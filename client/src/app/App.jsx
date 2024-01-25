@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client';
 import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 
 import NavbarComp from '../components/NavbarComp.jsx';
 import TopTracksComp from '../components/TopTracksComp.jsx';
@@ -19,18 +20,23 @@ import '../../styles/index.scss';
 
 export function App() {
 
-  return (
-    <>
-      {/* <LogStateComp/>
+      return (
+            
+            <>
+                  <Routes>
+                        <Route path="/" element={<SignupComp />} />
+                        {/* <Route path="/sign-up" element={<SignupComp />} /> */}
+                  </Routes>
+                  {/* <LogStateComp/>
       <NavbarComp/>
       <YearSliderComp/>
       <TopTracksComp/>
       <TopArtistsComp/>
       <TopAlbumComp/>
       <GraphComp/> */}
-      <AuthComp/>
-    </>
-  )
+            </>
+
+      )
 }
 
 // This exports the entire file "App" or module.
