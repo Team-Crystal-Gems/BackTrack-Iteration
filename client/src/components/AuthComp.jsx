@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SignupComp = () => {
+const AuthComp = () => {
     return (
       <div className='authenticationPage--container'>
         <div className='authenticationComp--container'>
@@ -25,4 +25,4 @@ const SignupComp = () => {
     )
 };
 
-export default SignupComp;
+export default AuthComp;
