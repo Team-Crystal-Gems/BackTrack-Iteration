@@ -1,30 +1,51 @@
+import { autoBatchEnhancer } from '@reduxjs/toolkit';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { toggleAuthStage } from '../features/authSlice.js';
 
 const AuthComp = () => {
-    return (
-      <div className='authenticationPage--container'>
-        <div className='authenticationComp--container'>
-            <h1>Sign up to start listening</h1>
-            <form>
-                <label htmlFor='input--name'>Name</label>
-                <input type='text' placeholder='First name' id='input--name'></input>
-                <label htmlFor='input--email'>Email</label>
-                <input type='email' placeholder='name@domain.com' id='input--email'></input>
-                <label htmlFor='input--password'>Password</label>
-                <input type='password' placeholder='password' id='input--password'></input>
-                <button className='btn'>Sign up</button>
-            </form>
-            <p>or</p>
-            <div className='btn--container'>
-                <button className='btn'>Sign up with Google</button>
-                <button className='btn'>Sign up with Facebook</button>
-            </div>
-            {/* <p>Already have an account? <a>Log in here</a>.</p> */}
-            <p>Already have an account? <Link to="/">Log in here</Link>.</p>
-        </div>
+  const authStage = useSelector(state => state.auth.authStage);
+  console.log('AUTHCOMP: authStage:   ', authStage);
+  let compProps;
+  if (authStage === 'signup') compProps = useSelector(state => state.auth.signupProps);
+  else if (authStage === 'login') compProps = useSelector(state => state.auth.loginProps);
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    dispatch(toggleAuthStage());
+  };
+
+  const navigateToDashboard = () => {
+    navigate('/dashboard');
+  };
+  
+  return (
+    <div className='authenticationPage--container'>
+      <div className='authenticationComp--container'>
+          <h1>{compProps.header}</h1>
+          <form onSubmit={navigateToDashboard}>
+            {compProps.nameLabel && <label htmlFor='input--name'>Name</label>}
+            {compProps.nameLabel && <input type='text' placeholder='First name' id='input--name'></input>}
+            <label htmlFor='input--email'>Email</label>
+            <input type='email' placeholder='name@domain.com' id='input--email'></input>
+            <label htmlFor='input--password'>Password</label>
+            <input type='password' placeholder='password' id='input--password'></input>
+            <button className='btn' onClick={navigateToDashboard}>{compProps.submitBtnLabel}</button>
+          </form>
+          <p>or</p>
+          <div className='btn--container'>
+
+              <button className='btn'>{authStage === 'signup'? 'Sign in' : 'Log in'} with Google</button>
+              <button className='btn'>{authStage === 'signup' ? 'Sign in' : 'Log in'} with Facebook</button>
+          </div>
+          {authStage === 'signup' && <p>Already have an account? <a onClick={handleClick}>Log in here.</a>.</p>}
+          {authStage === 'login' && <p>Don't have an account?<a onClick={handleClick}> Sign up here</a>.</p>}
       </div>
-    )
+    </div>
+  )
 };
 
 export default AuthComp;
