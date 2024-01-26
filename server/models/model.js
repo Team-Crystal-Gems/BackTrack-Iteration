@@ -127,17 +127,20 @@ const models = {
     .in('album_name', albumNameArray)
   ),
 
-  authUser: (email) => executeQuery(() => supabase
-    .from('users')
-    .select('*')
-    .eq('email', email)
-    .single()
-  ),
+  authUser: async (email) => {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', email)
+      .single()
+    return data
+  },
 
-  createUser: (email, password, name) => executeQuery(() => supabase
-    .from('users')
-    .insert([{email, password, name}])
-  )
+  createUser: async (email, password, name) => {
+    const { data, error } = await supabase
+      .from('users')
+      .insert([{email, password, name}])
+  }
 
   // Old query to get Top10TracksForYear. Does not use views.
 
