@@ -10,7 +10,7 @@ import GraphComp from '../components/GraphComp.jsx';
 import LogStateComp from '../components/LogStateComp.jsx';
 import YearSliderComp from '../components/SliderComp.jsx';
 import SignupComp from '../components/SignupComp.jsx';
-import LoginComp from '../components/LoginComp.jsx';
+// import LoginComp from '../components/LoginComp.jsx';
 
 import { fetchTopTracks, fetchTopArtists, setChosenTrack } from '../features/slice.js';
 // import DisplayYear from '../components/DisplayYear.jsx';
@@ -25,8 +25,8 @@ export function App() {
             
             <>
                   <Routes>
-                        <Route path="/" element={<LoginComp />} />
-                        <Route path="/sign-up" element={<SignupComp />} />
+                        <Route path="/" element={<SignupComp />} />
+                        {/* <Route path="/sign-up" element={<SignupComp />} /> */}
                   </Routes>
                   {/* <LogStateComp/>
       <NavbarComp/>
