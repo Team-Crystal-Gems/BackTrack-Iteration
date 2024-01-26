@@ -1,5 +1,6 @@
 import { models } from '../models/model.js';
 import bcrypt from 'bcrypt';
+import JWT from 'jsonwebtoken';
 
 
 const usersController = {};
@@ -20,11 +21,12 @@ usersController.createUser = async (req, res, next) => {
 
 }
 
-usersController.authUser = async () => {
+usersController.authUser = async (req, res, next) => {
   const {email, password} = req.body
   const user = await models.authUser(email)
   const result = await bcrypt.compare(password, user.password)
   if (user && result) {
+    res.locals.userId = user.id;
     next();
   } else {
     return next({
@@ -33,6 +35,10 @@ usersController.authUser = async () => {
       message: {err: 'userController.authUser - error authenticating user'}
     })
   }
+}
+
+usersController.createJWT = (req, res, next) => {
+    const SECRET_KEY = 
 }
 
 export default usersController;
