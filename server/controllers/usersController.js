@@ -7,11 +7,14 @@ dotenv.config({ path: '../.env.server' });
 const usersController = {};
 
 usersController.createUser = async (req, res, next) => {
+  console.log('INSIDE USERS CONTROLLER');
   if (!req.body.email || !req.body.password)
     return res.status(400).json({ err: 'Please fill in all empty fields' });
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    console.log(hashedPassword, 'password hash');
     await models.createUser(req.body.email, hashedPassword, req.body.name);
+    console.log('Created user in database');
     return next();
   } catch (err) {
     console.log(err);
@@ -24,7 +27,10 @@ usersController.createUser = async (req, res, next) => {
 };
 
 usersController.authUser = async (req, res, next) => {
+  console.log('INSIDE AUTH CONTROLLER');
   const { email, password } = req.body;
+  console.log('EMAIL:  ', email);
+  console.log('password:  ', password);
   const user = await models.authUser(email);
   const result = await bcrypt.compare(password, user.password);
   if (user && result) {

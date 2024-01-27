@@ -42,9 +42,7 @@ const handleRequest = async (modelFunction, req, res) => {
 };
 
 const executeQuery = async (queryCallback) => {
-  // console.log('executeQuery in model.js');
   const { data, error } = await queryCallback(supabase);
-  // console.log(data, 'data in model.js');
   if (error) throw error;
   if (data.length === 0) return [];
   return data;
