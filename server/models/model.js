@@ -150,6 +150,12 @@ const models = {
       .insert([{ email, password, name }]);
   },
 
+  uploadData: async (sessionData)  => {
+    const { data, error } = await supabase
+      .from('sessions')
+      .insert(sessionData);
+  },
+
   // Old query to get Top10TracksForYear. Does not use views.
 
   // getTop10TracksForYear: (year) =>
