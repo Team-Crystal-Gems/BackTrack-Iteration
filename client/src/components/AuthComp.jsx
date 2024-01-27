@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toggleAuthStage } from '../features/authSlice.js';
+import GoogleSignIn from './GoogleLogin.jsx';
 
 const AuthComp = () => {
   const authStage = useSelector(state => state.auth.authStage);
@@ -37,9 +38,9 @@ const AuthComp = () => {
           </form>
           <p>or</p>
           <div className='btn--container'>
-
-              <button className='btn'>{authStage === 'signup'? 'Sign in' : 'Log in'} with Google</button>
-              <button className='btn'>{authStage === 'signup' ? 'Sign in' : 'Log in'} with Facebook</button>
+            <GoogleSignIn className="google-btn" />
+            <button className='btn'>{authStage === 'signup'? 'Sign in' : 'Log in'} with Google</button>
+            <button className='btn'>{authStage === 'signup' ? 'Sign in' : 'Log in'} with Facebook</button>
           </div>
           {authStage === 'signup' && <p>Already have an account? <a onClick={handleClick}>Log in here.</a>.</p>}
           {authStage === 'login' && <p>Don't have an account?<a onClick={handleClick}> Sign up here</a>.</p>}

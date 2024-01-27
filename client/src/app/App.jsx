@@ -11,6 +11,7 @@ import LogStateComp from '../components/LogStateComp.jsx';
 import YearSliderComp from '../components/SliderComp.jsx';
 import SignupComp from '../components/SignupComp.jsx';
 // import LoginComp from '../components/LoginComp.jsx';
+import AuthComp from '../components/AuthComp.jsx';
 
 import {
   fetchTopTracks,
@@ -26,8 +27,8 @@ export function App() {
     <>
       <GoogleOAuthProvider clientId="61323721664-ut6009ddm9ce3bf41albrsi53gtbhvq2.apps.googleusercontent.com">
         <Routes>
-          <Route path="/" element={<SignupComp />} />
-          {/* <Route path="/sign-up" element={<SignupComp />} /> */}
+          <Route path="/" element={<AuthComp />}/>
+          {/* <Route path="/dashboard" element={<Dashboard />}/> */}
         </Routes>
       </GoogleOAuthProvider>
       {/* <LogStateComp/>
@@ -39,16 +40,6 @@ export function App() {
       <GraphComp/> */}
     </>
   );
-
-      return (
-            <>
-              <Routes>
-                  <Route path="/" element={<AuthComp />}/>
-                  <Route path="/dashboard" element={<Dashboard />}/>
-              </Routes>
-            </>
-
-      )
 }
 
 // This exports the entire file "App" or module.
