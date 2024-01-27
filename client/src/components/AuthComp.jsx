@@ -25,6 +25,9 @@ const AuthComp = () => {
     navigate('/dashboard');
   };
 
+  // https://www.npmjs.com/package/@react-oauth/google
+  // need func to redirect to /dashboard on success
+  // need func to create a new user in the backend
   const googleOAuth = useGoogleLogin({
     onSuccess: (response) => console.log('Google Oauth Success', response),
     onError: () => console.log('Error on Google Oauth')
@@ -47,12 +50,10 @@ const AuthComp = () => {
         <div className='btn--container'>
           {/* <GoogleSignIn className="google-btn" buttonText="bananas">Sign Up with Google</GoogleSignIn> */}
 
-          <button onClick={() => googleOAuth()}>Bananas</button>
-
-          <button className='btn'>{authStage === 'signup' ? 'Sign in' : 'Log in'} with Google</button>
-          <button className='btn'>{authStage === 'signup' ? 'Sign in' : 'Log in'} with Facebook</button>
+          <button className='btn' onClick={() => googleOAuth()}>{authStage === 'signup' ? 'Sign in' : 'Log in'} with Google</button>
+          {/* <button className='btn'>{authStage === 'signup' ? 'Sign in' : 'Log in'} with Facebook</button> */}
         </div>
-        {authStage === 'signup' && <p>Already have an account? <a onClick={handleClick}>Log in here.</a>.</p>}
+        {authStage === 'signup' && <p>Already have an account? <a onClick={handleClick}>Log in here</a>.</p>}
         {authStage === 'login' && <p>Don't have an account?<a onClick={handleClick}> Sign up here</a>.</p>}
       </div>
     </div>
