@@ -148,10 +148,22 @@ const models = {
       .insert([{ email, password, name }]);
   },
 
-  uploadData: async (sessionData)  => {
+  uploadData: async (sessionData, userId)  => {
     const { data, error } = await supabase
-      .from('sessions')
-      .insert(sessionData);
+      .from('sessions_testing')
+      .insert({
+        ...sessionData,
+        user_id: userId
+      });
+  },
+
+  addTracks: async () => {
+    await supabase.rpc('insert_tracks_from_sessions')
+    await supabase.rpc('update_tracks_playtime')
+  },
+
+  addAlbums: async () => {
+
   },
 
   // Old query to get Top10TracksForYear. Does not use views.

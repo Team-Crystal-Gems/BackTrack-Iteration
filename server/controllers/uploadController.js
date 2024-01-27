@@ -17,8 +17,9 @@ uploadController.processFiles = async (req, res, next) => {
                     ts: item.ts,
                 }))
                 // need user_id as well so that sessions are unique to users
-                await models.uploadData(filteredData);
-                // add into tracks, album tables
+                await models.uploadData(filteredData, res.locals.userId);
+                await models.addTracks();
+
                 // add foreign key relation for sessions
             }
         }
