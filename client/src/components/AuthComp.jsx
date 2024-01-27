@@ -10,7 +10,7 @@ const AuthComp = () => {
   const authStage = useSelector(state => state.auth.authStage);
   const [formData, setFormData] = React.useState(
     {
-      firstName: '',
+      name: '',
       email: '',
       password: ''
     }
@@ -40,15 +40,15 @@ const AuthComp = () => {
     event.preventDefault();
 
     const response = await fetch(
-      '/users/login', 
+      `/users/${authStage}`, 
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       }
     );
-    const data = await response.json();
-    console.log(data);
+    // const data = await response.json();
+    // console.log(data);
     // on sucess, nagiate to /dashboard. What does 'success' look like?
     navigate('/dashboard');
   };
@@ -71,7 +71,7 @@ const AuthComp = () => {
             <input 
               type='text'
               placeholder='First name'
-              name='firstName'
+              name='name'
               id='input--name'
               onChange={handleChange} 
               value={formData.name}

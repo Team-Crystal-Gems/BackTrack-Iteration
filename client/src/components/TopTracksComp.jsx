@@ -35,7 +35,7 @@ const TopTracksComp = () => {
   const [endClipTimeout, setEndClipTimeout] = useState(null);
 
   const controlImage = (track) => {
-    console.log('controlImage in TopTracksComp.jsx');
+    // console.log('controlImage in TopTracksComp.jsx');
     dispatch(setChosenTrack(track))
   }
 
