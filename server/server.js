@@ -10,6 +10,11 @@ import artistsRouter from './routes/artistsRouter.js';
 import albumsRouter from './routes/albumsRouter.js';
 import usersRouter from './routes/usersRouter.js';
 
+import path from 'path';
+import { fileURLToPath } from 'url'
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Load environment variables from .env.server.
 dotenv.config({ path: '.env.server' });
 
@@ -36,6 +41,14 @@ app.use('/tracks', tracksRouter);
 app.use('/artists', artistsRouter);
 app.use('/albums', albumsRouter);
 app.use('/users', usersRouter);
+
+// Client routing
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+})
+app.get('/upload', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+})
 
 app.use((err, req, res, next) => {
     const defaultErr = {
