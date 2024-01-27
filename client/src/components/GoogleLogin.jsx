@@ -1,10 +1,12 @@
 import React from 'react';
-import { GoogleLogin } from '@react-oauth/google';
+import GoogleLogin from '@react-oauth/google';
 
 const GoogleSignIn = () => {
   const handleGoogleLogin = (response) => {
     console.log('Google login response', response);
   };
+
+
   return (
     <GoogleLogin
       onSuccess={handleGoogleLogin}
@@ -13,4 +15,7 @@ const GoogleSignIn = () => {
   );
 };
 
-export default GoogleSignIn;
+
+
+
+export default  GoogleSignIn;
