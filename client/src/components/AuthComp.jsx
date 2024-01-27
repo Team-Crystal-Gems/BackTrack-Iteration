@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toggleAuthStage } from '../features/authSlice.js';
-// import { saveUserData } from '../features/authSlice.js';
 import { useGoogleLogin } from '@react-oauth/google';
 
 const AuthComp = () => {
@@ -37,7 +36,6 @@ const AuthComp = () => {
 
     const handleSubmit = async (event) => {
       event.preventDefault();
-      // await dispatch(saveUserData(formData, authStage));
 
       const response = await fetch(`/users/${authStage}`, {
         method: 'POST',
