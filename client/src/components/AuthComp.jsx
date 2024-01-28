@@ -55,7 +55,7 @@ const AuthComp = () => {
   const googleOAuth = useGoogleLogin({
     onSuccess: (response) => {
       console.log(response);
-      fetch('http://localhost:3000/users/oauth', {
+      fetch('/users/googleOAuth', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${response.access_token}`,

@@ -15,6 +15,13 @@ router.post('/signup', usersController.createUser, (req, res) => {
   res.sendStatus(200);
 });
 
-router.post('/oauth', usersController.oauthLogin);
+router.post(
+  '/googleOAuth',
+  usersController.googleOAuthLogin,
+  usersController.createJWT,
+  (req, res) => {
+    res.sendStatus(200);
+  }
+);
 
 export default router;

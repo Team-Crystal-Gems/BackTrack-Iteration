@@ -46,7 +46,9 @@ usersController.authUser = async (req, res, next) => {
 };
 
 usersController.createJWT = (req, res, next) => {
+  console.log('entered JWT middleware');
   const SECRET_KEY = process.env.JWT_KEY;
+  console.log(SECRET_KEY);
   const token = JWT.sign({ userId: res.locals.userId }, SECRET_KEY, {
     expiresIn: '1h',
   });
@@ -77,29 +79,38 @@ usersController.verifyJWT = (req, res, next) => {
   }
 };
 
-usersController.oauthLogin = (req, res, next) => {
-  const authHeader = req.header('Authorization');
-  console.log(authHeader);
-  if (!authHeader) {
-    return res.status(401).send('Authorization header is missing');
+usersController.googleOAuthLogin = async (req, res, next) => {
+  try {
+    const authHeader = req.header('Authorization');
+    if (!authHeader) {
+      return res.status(401).send('Authorization header is missing');
+    }
+    const accessToken = authHeader.split(' ')[1];
+    const response = await fetch(
+      'https://www.googleapis.com/oauth2/v3/userinfo',
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Google API responded with status: ${response.status}`);
+    }
+    const user = await response.json();
+    const appUser = await models.checkOAuth(user.sub);
+    if (appUser) {
+      res.locals.userId = user.id;
+      console.log('success!');
+      next();
+    } else {
+      await models.createOAuthUser(user.email, user.name, user.sub, 'Google');
+      next();
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('An error occurred while processing your request.');
   }
-
-  const accessToken = authHeader.split(' ')[1];
-  console.log(accessToken);
-  fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  })
-    .then((response) => response.json())
-    .then((user) => {
-      console.log(user);
-      res.send(user); // This sends the user data back to the frontend
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send('Error fetching user data');
-    });
 };
 
 export default usersController;
