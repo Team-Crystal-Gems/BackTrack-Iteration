@@ -69,6 +69,7 @@ const AuthComp = () => {
         .catch((error) => {
           console.error(error);
         });
+      navigate('/dashboard');
     },
     onError: () => console.log('Error on Google Oauth'),
   });
