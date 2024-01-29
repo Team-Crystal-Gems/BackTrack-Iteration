@@ -18,7 +18,6 @@ uploadController.processFiles = async (req, res, next) => {
                 }))
                 // need user_id as well so that sessions are unique to users
                 await models.uploadData(filteredData, res.locals.userId);
-                await models.addTracks();
 
                 // add foreign key relation for sessions
             }
@@ -31,3 +30,5 @@ uploadController.processFiles = async (req, res, next) => {
         })
     }
 }
+
+export default uploadController

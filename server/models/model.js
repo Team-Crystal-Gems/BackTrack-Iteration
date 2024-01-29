@@ -157,14 +157,14 @@ const models = {
       });
   },
 
-  addTracks: async () => {
-    await supabase.rpc('insert_tracks_from_sessions')
-    await supabase.rpc('update_tracks_playtime')
-  },
+  // addTracks: async () => {
+  //   await supabase.rpc('insert_tracks_from_sessions')
+  //   await supabase.rpc('update_tracks_playtime')
+  // },
 
-  addAlbums: async () => {
+  // addAlbums: async () => {
 
-  },
+  // },
 
   // Old query to get Top10TracksForYear. Does not use views.
 
