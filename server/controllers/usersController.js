@@ -101,7 +101,6 @@ usersController.googleOAuthLogin = async (req, res, next) => {
     const appUser = await models.checkOAuth(user.sub);
     if (appUser) {
       res.locals.userId = user.id;
-      console.log('success!');
       next();
     } else {
       await models.createOAuthUser(user.email, user.name, user.sub, 'Google');

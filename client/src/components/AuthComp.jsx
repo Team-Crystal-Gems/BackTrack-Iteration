@@ -54,21 +54,15 @@ const AuthComp = () => {
   // need func to create a new user in the backend
   const googleOAuth = useGoogleLogin({
     onSuccess: (response) => {
-      console.log(response);
       fetch('/users/googleOAuth', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${response.access_token}`,
           'Content-Type': 'application/json',
         },
-      })
-        .then((response) => response.json())
-        .then((user) => {
-          console.log(user); // The user data from your backend
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      }).catch((error) => {
+        console.error(error);
+      });
       navigate('/dashboard');
     },
     onError: () => console.log('Error on Google Oauth'),
