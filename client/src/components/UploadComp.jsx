@@ -11,20 +11,19 @@ const UploadComp = () => {
       return;
     }
 
-    const files = new FormData();
+    const formData = new FormData();
     
     selectedFiles.forEach((file, index) => {
-      files.append(`files[${index}]`, file);
+      formData.append(`files`, file);
     });
 
-    console.log('files====>', files);
-    console.log('selectedFiles====>', selectedFiles);
+
 
     try {
       const response = await fetch('/users/upload', {
         method: 'POST',
         // header: {'Content-Type': 'multipart/form-data'},
-        body: files,
+        body: formData,
       })
 
       if(response.ok){
