@@ -148,6 +148,7 @@ const models = {
       .insert([{ email, password, name }]);
   },
 
+
   uploadData: async (sessionData, userId)  => {
     const { data, error } = await supabase
       .from('sessions_testing')
@@ -165,6 +166,20 @@ const models = {
   // addAlbums: async () => {
 
   // },
+  createOAuthUser: async (email, name, oauth_unique_id, oauth_provider) => {
+    const { data, error } = await supabase
+      .from('users')
+      .insert([{ email, name, oauth_unique_id, oauth_provider }]);
+  },
+
+  checkOAuth: async (oauth_unique_id) => {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('oauth_unique_id', oauth_unique_id)
+      .single();
+    return data;
+  },
 
   // Old query to get Top10TracksForYear. Does not use views.
 
