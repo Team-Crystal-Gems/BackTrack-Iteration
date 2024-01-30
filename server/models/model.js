@@ -148,6 +148,24 @@ const models = {
       .insert([{ email, password, name }]);
   },
 
+
+  uploadData: async (sessionData, userId)  => {
+    const { data, error } = await supabase
+      .from('sessions_testing')
+      .insert({
+        ...sessionData,
+        user_id: userId
+      });
+  },
+
+  // addTracks: async () => {
+  //   await supabase.rpc('insert_tracks_from_sessions')
+  //   await supabase.rpc('update_tracks_playtime')
+  // },
+
+  // addAlbums: async () => {
+
+  // },
   createOAuthUser: async (email, name, oauth_unique_id, oauth_provider) => {
     const { data, error } = await supabase
       .from('users')
