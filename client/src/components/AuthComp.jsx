@@ -47,6 +47,8 @@ const AuthComp = () => {
     // console.log(data);
     // on sucess, nagiate to /dashboard. What does 'success' look like?
     navigate('/dashboard');
+    // navigate('/upload');
+
   };
 
   // https://www.npmjs.com/package/@react-oauth/google

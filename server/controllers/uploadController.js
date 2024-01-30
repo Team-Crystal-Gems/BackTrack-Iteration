@@ -3,9 +3,14 @@ import { models } from '../models/model.js';
 const uploadController = {};
 
 uploadController.processFiles = async (req, res, next) => {
+    
+    console.log('req--->', req)
+    console.log('req.files--->', req.files)
+
     try {
         for (const file of req.files) {
             if (file.mimetype === 'application/json') {
+                console.log('After if statment')
                 const jsonData = JSON.parse(file.buffer.toString())
                 const filteredData = jsonData.map(item => ({
                     album_name: item.master_metadata_album_album_name,
