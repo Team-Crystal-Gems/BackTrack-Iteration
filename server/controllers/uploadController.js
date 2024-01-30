@@ -3,7 +3,7 @@ import { models } from '../models/model.js';
 const uploadController = {};
 
 uploadController.processFiles = async (req, res, next) => {
-    
+
 
     try {
         for (const file of req.files) {

@@ -4,8 +4,12 @@ import { useState } from "react";
 const UploadComp = () => {
 
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [displayFiles, setDisplayFiles] = useState([]);
 
-  const handleClick = async () => {
+  const handleClick = async (event) => {
+
+    event.preventDefault();
+
     if(!selectedFiles.length){
       alert('Please selected a file!');
       return;
@@ -41,8 +45,17 @@ const UploadComp = () => {
 
   const handleFileChange = (event) => {
   
-    setSelectedFiles([...event.target.files])
+    const newFiles = Array.from(event.target.files);
+    setSelectedFiles(prevFiles => [...prevFiles, ...newFiles]);
 
+    const mappedDisplayedFile = selectedFiles.map(file => {
+      return(
+        <li>
+          {file.name}
+        </li>
+      )
+    })
+    setDisplayFiles(mappedDisplayedFile);
   }
 
 
@@ -50,9 +63,12 @@ const UploadComp = () => {
     <>
       <input type="file" multiple onChange={handleFileChange}></input>
       <button onClick={handleClick}>Upload</button>
-      {/* <ul>
-        { }
-      </ul> */}
+      <ul onChange={handleFileChange}>
+        {/* {selectedFiles.map(file => {
+          <li>{file.name}</li>
+        })} */}
+        {displayFiles}
+      </ul>
     </>
   )
 };
