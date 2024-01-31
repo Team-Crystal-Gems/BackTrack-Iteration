@@ -4,6 +4,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 // we import the getSpotifyToken function from the spotifyTokenRefresh.js file
 import { getSpotifyToken } from '../spotifyTokenRefresh.js';
+import { exec } from 'child_process';
 
 // This loads environment variables from .env.server file.
 dotenv.config({ path: './.env.server' });
@@ -198,17 +199,14 @@ const models = {
   //     .order('ms_played', { ascending: false })
   //     ).then(tracks => tracks),
 
-  getUserName: (userId) => {
-    console.log('MODEL JS: GET USER NAME: USER ID:   ', userId);
-    console.log('typeof userID:   ', typeof userId);
-    return executeQuery(() => {
-      return supabase
-        .from('users')
-        .select('name')
-        .where('id', 'eq', userId)
-    }
-  )
-  },
+  getUserName: userId => 
+    executeQuery(
+      () => 
+        supabase
+          .from('users')
+          .select('name')
+          .eq('id', userId)
+    ),
 };
 
 export { models };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ReactDOM from 'react-dom/client';
+// import ReactDOM from 'react-dom/client';
 import '../../styles/index.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { setYear, fetchTopTracks, fetchTopArtists, setChosenTrack, fetchTopAlbums } from '../features/slice.js';
@@ -19,18 +19,15 @@ const SliderComp = () => {
   );
 
   useEffect(() => {
-    console.log('ELENA SLIDE COMP: FETCHING USER DATA...')
     fetch('/users/data')
-      .then(response => {
-        console.log('ELENA SLIDE COMP: FETCHED RESPONSE:   ', response);
-      })
-      // .then(jsonData => setUserId(prev => {
-      //   return {
-      //     ...prev,
-      //     user_id: jsonData.user_id,
-      //     user_name: jsonData.user_name
-      //   }
-      // }))
+      .then(response => response.json())
+      .then(jsonData => setUserId(prev => {
+        return {
+          ...prev,
+          user_id: jsonData.user_id,
+          user_name: jsonData.user_name
+        }
+      }))
       .catch(err => console.log('SliderComp.jsx: fetch /users/data: Error: ', err));
   }, []);
 
