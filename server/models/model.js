@@ -198,18 +198,13 @@ const models = {
   //     .order('ms_played', { ascending: false })
   //     ).then(tracks => tracks),
 
-  // getTopTracks: () =>
-  //   executeQuery(
-  //     () =>
-  //       supabase
-  //         .from('tracks')
-  //         .select('*')
-  //         .order('playtime_ms', { ascending: false })
-  //         .limit(10)
-
-  getUserDetails: () => {
-    
-  }
+  getUserName: (userId) => 
+    executeQuery(() =>
+      supabase
+        .from('users')
+        .select('name')
+        .where('id', 'eq', userId)
+    ),
 };
 
 export { models };

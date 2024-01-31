@@ -69,7 +69,9 @@ usersController.verifyJWT = (req, res, next) => {
   }
   try {
     const decoded = JWT.verify(token, SECRET_KEY);
-    res.locals.userId = decoded;
+    console.log('USER CONTROLLER: VERIFY JWT: DECODED:   ', decoded);
+    res.locals.userId = decoded.userId;
+    return next();
   } catch {
     return next({
       log: 'userController.verifyJWT - error verifying token',
@@ -112,8 +114,21 @@ usersController.googleOAuthLogin = async (req, res, next) => {
   }
 };
 
-usersController.getUserData = (req, res, next) => {
-  next();
-}
+usersController.getUserName = (req, res, next) => {
+  console.log('INSIDE USER CONTROLLER: GET USER NAME...');
+  models.getUserName(res.locals.userId)
+    .then(data => {
+      console.log('USERS CONTROLLER: getUserName: RETURNED DATA: ', data);
+      res.locals.userName = data;
+      return next();
+    })
+    .catch(err => {
+      return next({
+        log: 'userController.getUserName - error querying name from users table',
+        status: 400,
+        message: { err: JSON.stringify(err) },        
+      }); 
+    })
+};
 
 export default usersController;
