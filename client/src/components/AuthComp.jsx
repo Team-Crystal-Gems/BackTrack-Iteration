@@ -43,7 +43,7 @@ const AuthComp = () => {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) navigate('/dashboard');
+      if (response.ok) navigate('/upload');
       else alert('Invalid credentials. Try again');
     };
 
@@ -61,7 +61,7 @@ const AuthComp = () => {
       }).catch((error) => {
         console.error(error);
       });
-      navigate('/dashboard');
+      navigate('/upload');
     },
     onError: () => console.log('Error on Google Oauth'),
   });
@@ -105,11 +105,11 @@ const AuthComp = () => {
 
           <button className="btn">{compProps.submitBtnLabel}</button>
         </form>
-        <p>or</p>
         <div className="btn--container">
-          <button className="btn" onClick={() => googleOAuth()}>
-            {authStage === 'signup' ? 'Sign in' : 'Log in'} with Google
-          </button>
+        <p>or</p>
+            <button className="btn" onClick={() => googleOAuth()}>
+              {compProps.submitBtnLabel} with Google
+            </button>
         </div>
         {authStage === 'signup' && (
           <p>
