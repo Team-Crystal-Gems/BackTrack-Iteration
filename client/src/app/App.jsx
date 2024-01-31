@@ -13,6 +13,7 @@ import {
 } from '../features/slice.js';
 // import DisplayYear from '../components/DisplayYear.jsx';
 import '../../styles/index.scss';
+import UploadComp from '../components/UploadComp.jsx';
 
 export function App() {
   return (
@@ -21,6 +22,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<AuthComp />}/>
           <Route path="/dashboard" element={<Dashboard />}/>
+          <Route path="/upload" element={<UploadComp />}/>
         </Routes>
       </GoogleOAuthProvider>
     </>
