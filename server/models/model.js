@@ -151,23 +151,54 @@ const models = {
   },
 
 
-  uploadData: async (sessionData, userId)  => {
+  uploadData: async (sessionData)  => {
+    
     const { data, error } = await supabase
       .from('sessions_testing')
-      .insert({
-        ...sessionData,
-        user_id: userId
-      });
+      .insert(sessionData);
+    console.log('Data Uploaded')
+    if (error) console.error('Error',error);
   },
 
-  // addTracks: async () => {
-  //   await supabase.rpc('insert_tracks_from_sessions')
-  //   await supabase.rpc('update_tracks_playtime')
-  // },
+  tracksForeignKey: async () => {
+    const tracks = await supabase
+      .from('tracks_testing')
+      .select('id, uri');
 
-  // addAlbums: async () => {
+    for (const track of tracks.data) {
+      const { data, error } = await supabase
+        .from('sessions_testing')
+        .update({ track_id: track.id })
+        .eq('track_uri', track.uri);
+    }
+  },
 
-  // },
+  artistsForeignKey: async () => {
+    const artists = await supabase
+      .from('artists_testing')
+      .select('id, name');
+
+    for (const artist of artists.data) {
+      const { data, error } = await supabase
+        .from('sessions_testing')
+        .update({ artist_id: artist.id })
+        .eq('artist_name', artist.name);
+    }
+  },
+
+  albumsForeignKey: async () => {
+    const albums = await supabase
+      .from('albums_testing')
+      .select('id, name');
+
+    for (const album of albums.data) {
+      const { data, error } = await supabase
+        .from('sessions_testing')
+        .update({ album_id: album.id })
+        .eq('album_name', album.name);
+    }
+  },
+
   createOAuthUser: async (email, name, oauth_unique_id, oauth_provider) => {
     const { data, error } = await supabase
       .from('users')

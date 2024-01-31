@@ -28,16 +28,20 @@ usersController.createUser = async (req, res, next) => {
 };
 
 usersController.authUser = async (req, res, next) => {
-  console.log('INSIDE AUTH CONTROLLER');
-  const { email, password } = req.body;
-  console.log('EMAIL:  ', email);
-  console.log('password:  ', password);
-  const user = await models.authUser(email);
-  const result = await bcrypt.compare(password, user.password);
-  if (user && result) {
-    res.locals.userId = user.id;
-    next();
-  } else {
+  try {
+    console.log('INSIDE AUTH CONTROLLER');
+    const { email, password } = req.body;
+    console.log('EMAIL:  ', email);
+    console.log('password:  ', password);
+    const user = await models.authUser(email);
+    const result = await bcrypt.compare(password, user.password);
+    if (user && result) {
+      res.locals.userId = user.id;
+      next();
+    } else {
+      throw new Error();
+    }
+  } catch {
     return next({
       log: 'userController.authUser - error authenticating user',
       status: 401,
@@ -65,11 +69,13 @@ usersController.createJWT = (req, res, next) => {
 usersController.verifyJWT = (req, res, next) => {
   const SECRET_KEY = process.env.JWT_KEY;
   const token = req.cookies.token;
+  console.log(token)
   if (!token) {
     return res.redirect('/login');
   }
   try {
     const decoded = JWT.verify(token, SECRET_KEY);
+    console.log(decoded);
     res.locals.userId = decoded;
   } catch {
     return next({
