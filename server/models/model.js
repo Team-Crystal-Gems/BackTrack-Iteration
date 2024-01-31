@@ -152,12 +152,11 @@ const models = {
 
 
   uploadData: async (sessionData)  => {
-    
     const { data, error } = await supabase
       .from('sessions_testing')
       .insert(sessionData);
-    console.log('Data Uploaded')
-    if (error) console.error('Error',error);
+    console.log('models.uploadData: Data Uploaded')
+    if (error) console.error('Upload data error:  ', error);
   },
 
   tracksForeignKey: async () => {
