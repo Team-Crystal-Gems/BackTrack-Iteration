@@ -26,9 +26,9 @@ uploadController.processFiles = async (req, res, next) => {
 
                 // add foreign key relation for sessions
 
-                return next()
             }
         }
+        return next()
     } catch (error) {
         console.error(error);
         return next({
