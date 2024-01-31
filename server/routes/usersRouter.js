@@ -32,7 +32,7 @@ router.post('/upload', upload.array('files'), uploadController.processFiles, (re
   res.sendStatus(200);
 })
 
-router.get('/data', usersController.verifyJWT, (req, res) => {
+router.get('/data', usersController.verifyJWT, usersController.getUserName, (req, res) => {
   // console.log('ELENA USERS ROUTER: /data: RES.LOCALS.USERID:   ', res.locals.userId);
   // console.log('ELENA USERS ROUTER: /data: RES.LOCALS.USERNAME:   ', res.locals.userName);
   //   res.status(200).json({

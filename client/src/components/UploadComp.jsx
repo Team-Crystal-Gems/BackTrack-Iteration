@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const UploadComp = () => {
 
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const navigate = useNavigate();
 
   const handleClick = async () => {
     if(!selectedFiles.length){
@@ -38,6 +40,10 @@ const UploadComp = () => {
     }
   };
 
+  const handleClick2 = () => {
+    navigate('/dashboard');
+  }
+
 
   const handleFileChange = (event) => {
   
@@ -50,6 +56,7 @@ const UploadComp = () => {
     <>
       <input type="file" multiple onChange={handleFileChange}></input>
       <button onClick={handleClick}>Upload</button>
+      <button onClick={handleClick2}>Dashboard</button>
       {/* <ul>
         { }
       </ul> */}

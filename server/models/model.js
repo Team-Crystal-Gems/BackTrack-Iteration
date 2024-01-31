@@ -198,13 +198,17 @@ const models = {
   //     .order('ms_played', { ascending: false })
   //     ).then(tracks => tracks),
 
-  getUserName: (userId) => 
-    executeQuery(() =>
-      supabase
+  getUserName: (userId) => {
+    console.log('MODEL JS: GET USER NAME: USER ID:   ', userId);
+    console.log('typeof userID:   ', typeof userId);
+    return executeQuery(() => {
+      return supabase
         .from('users')
         .select('name')
         .where('id', 'eq', userId)
-    ),
+    }
+  )
+  },
 };
 
 export { models };
