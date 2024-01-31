@@ -1,7 +1,6 @@
-import { autoBatchEnhancer } from '@reduxjs/toolkit';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toggleAuthStage } from '../features/authSlice.js';
 import { useGoogleLogin } from '@react-oauth/google';
 
@@ -35,19 +34,18 @@ const AuthComp = () => {
     });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+    const handleSubmit = async (event) => {
+      event.preventDefault();
 
-    const response = await fetch(`/users/${authStage}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
-    // const data = await response.json();
-    // console.log(data);
-    // on sucess, nagiate to /dashboard. What does 'success' look like?
-    navigate('/dashboard');
-  };
+      const response = await fetch(`/users/${authStage}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) navigate('/dashboard');
+      else alert('Invalid credentials. Try again');
+    };
 
   // https://www.npmjs.com/package/@react-oauth/google
   // need func to redirect to /dashboard on success
@@ -112,7 +110,6 @@ const AuthComp = () => {
           <button className="btn" onClick={() => googleOAuth()}>
             {authStage === 'signup' ? 'Sign in' : 'Log in'} with Google
           </button>
-          {/* <button className='btn'>{authStage === 'signup' ? 'Sign in' : 'Log in'} with Facebook</button> */}
         </div>
         {authStage === 'signup' && (
           <p>

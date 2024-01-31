@@ -31,4 +31,8 @@ router.post('/upload', upload.array('files'), uploadController.processFiles, (re
   res.sendStatus(200);
 })
 
+router.get('data', usersController.getUserData, (req, res) => {
+  res.sendStatus(200);
+})
+
 export default router

@@ -197,6 +197,19 @@ const models = {
   //     .gte('ms_played', 60000)
   //     .order('ms_played', { ascending: false })
   //     ).then(tracks => tracks),
+
+  // getTopTracks: () =>
+  //   executeQuery(
+  //     () =>
+  //       supabase
+  //         .from('tracks')
+  //         .select('*')
+  //         .order('playtime_ms', { ascending: false })
+  //         .limit(10)
+
+  getUserDetails: () => {
+    
+  }
 };
 
 export { models };

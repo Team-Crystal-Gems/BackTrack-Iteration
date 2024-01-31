@@ -11,6 +11,25 @@ const SliderComp = () => {
 
   const { year, track: chosenTrack, status, error } = useSelector(state => state.chosen);
 
+  const [userId, setUserId] = useState(
+    {
+      user_id: '',
+      user_name: ''
+    }
+  );
+
+  useEffect(() => {
+    fetch('/users/data')
+      .then(response => response.json())
+      .then(jsonData => setUserId(prev => {
+        return {
+          ...prev,
+          user_id: jsonData.user_id,
+          user_name: jsonData.user_name
+        }
+      }))
+      .catch(err => console.log('SliderComp.jsx: fetch /users/data: Error: ', err));
+  }, []);
 
   const fetchData = () => {
     // the below .then on the dispatch then matching the fulfilled of dispatch to action allows us to wait for the fetchTopTracks to complete before dispatching the chosenTrack.

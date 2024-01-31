@@ -112,4 +112,8 @@ usersController.googleOAuthLogin = async (req, res, next) => {
   }
 };
 
+usersController.getUserData = (req, res, next) => {
+  next();
+}
+
 export default usersController;
