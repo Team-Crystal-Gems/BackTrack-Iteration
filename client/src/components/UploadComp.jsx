@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const UploadComp = () => {
 
@@ -48,14 +48,18 @@ const UploadComp = () => {
     const newFiles = Array.from(event.target.files);
     setSelectedFiles(prevFiles => [...prevFiles, ...newFiles]);
 
-    const mappedDisplayedFile = selectedFiles.map(file => {
+    console.log('selectedFiles---->', selectedFiles)
+
+    const mappedDisplayedFile = selectedFiles.map((file, i) => {
       return(
-        <li>
+        <li key={i}>
           {file.name}
         </li>
       )
     })
-    setDisplayFiles(mappedDisplayedFile);
+    // setDisplayFiles(mappedDisplayedFile);
+    setDisplayFiles((prevState) => [...prevState, ...mappedDisplayedFile]);
+    console.log('DisplayFiles--->', displayFiles)
   }
 
 
@@ -63,11 +67,13 @@ const UploadComp = () => {
     <>
       <input type="file" multiple onChange={handleFileChange}></input>
       <button onClick={handleClick}>Upload</button>
-      <ul onChange={handleFileChange}>
+      <ul>
+        {/* {displayFiles} */}
         {/* {selectedFiles.map(file => {
           <li>{file.name}</li>
         })} */}
-        {displayFiles}
+        {/* {selectedFiles.map((file, i) => (
+          <li key={i}>{file.name}</li>))} */}
       </ul>
     </>
   )
