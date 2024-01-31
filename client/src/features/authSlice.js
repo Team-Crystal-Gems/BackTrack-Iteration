@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   authStage: 'signup',
@@ -21,8 +21,9 @@ const authSlice = createSlice({
     toggleAuthStage: state => {
       state.authStage = state.authStage === 'signup' ? 'login' : 'signup';
     }
-  }
+  },
 });
+
 
 export const { toggleAuthStage } = authSlice.actions;
 export default authSlice.reducer;
