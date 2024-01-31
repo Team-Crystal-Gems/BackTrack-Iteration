@@ -21,8 +21,8 @@ export function App() {
       <GoogleOAuthProvider clientId="61323721664-ut6009ddm9ce3bf41albrsi53gtbhvq2.apps.googleusercontent.com">
         <Routes>
           <Route path="/" element={<AuthComp />}/>
-          <Route path="/dashboard" element={<Dashboard />}/>
           <Route path="/upload" element={<UploadComp />}/>
+          <Route path="/dashboard" element={<Dashboard />}/>
         </Routes>
       </GoogleOAuthProvider>
     </>

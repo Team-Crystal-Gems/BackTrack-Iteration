@@ -11,7 +11,8 @@ import albumsRouter from './routes/albumsRouter.js';
 import usersRouter from './routes/usersRouter.js';
 
 import path from 'path';
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'url';
+import cookieParser from 'cookie-parser';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -27,6 +28,7 @@ const app = express();
 // Using epxress.json and epxress .urlencoded middleware to parse incoming JSON and URL-encoded requesr bodies.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Cors is enabled for all origins allowing any origin to access the server's resources.
 const corsOptions = {
