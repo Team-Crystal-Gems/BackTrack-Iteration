@@ -16,7 +16,7 @@ router.post(
   }
 );
 
-router.post('/signup', usersController.createUser, (req, res) => {
+router.post('/signup', usersController.createUser, usersController.createJWT, (req, res) => {
   res.sendStatus(200);
 });
 
@@ -28,7 +28,7 @@ router.post(
     res.sendStatus(200);
   }
 );
-router.post('/upload', upload.array('files'), uploadController.processFiles, (req, res) => {
+router.post('/upload', upload.array('files'), usersController.verifyJWT, uploadController.processFiles, (req, res) => {
   res.sendStatus(200);
 })
 
