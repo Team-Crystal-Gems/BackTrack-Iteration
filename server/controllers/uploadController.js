@@ -25,8 +25,10 @@ uploadController.processFiles = async (req, res, next) => {
                 // await models.uploadData(filteredData, res.locals.userId);
 
                 // add foreign key relation for sessions
+
             }
         }
+        return next()
     } catch (error) {
         console.error(error);
         return next({
