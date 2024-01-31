@@ -13,8 +13,9 @@ usersController.createUser = async (req, res, next) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     console.log(hashedPassword, 'password hash');
-    await models.createUser(req.body.email, hashedPassword, req.body.name);
+    const user = await models.createUser(req.body.email, hashedPassword, req.body.name);
     console.log('Created user in database');
+    res.locals.userId = user.id;
     return next();
   } catch (err) {
     console.log(err);

@@ -15,7 +15,7 @@ router.post(
   }
 );
 
-router.post('/signup', usersController.createUser, (req, res) => {
+router.post('/signup', usersController.createUser, usersController.createJWT, (req, res) => {
   res.sendStatus(200);
 });
 

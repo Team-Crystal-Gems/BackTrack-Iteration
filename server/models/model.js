@@ -145,7 +145,9 @@ const models = {
   createUser: async (email, password, name) => {
     const { data, error } = await supabase
       .from('users')
-      .insert([{ email, password, name }]);
+      .insert([{ email, password, name }])
+      .select();
+    return data;
   },
 
 
