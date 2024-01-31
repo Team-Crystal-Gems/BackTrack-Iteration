@@ -1,23 +1,29 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UploadComp = () => {
 
-  const [selectedFiles, setSelectedFiles] = useState([]);
-  const [displayFiles, setDisplayFiles] = useState([]);
+  const navigate = useNavigate();
+  const [fileSelect, setFileSelect] = useState([]);
+  // const [displayFiles, setDisplayFiles] = useState([]);
+
+  const handleNav = () => {
+    navigate('/dashboard');
+  }
 
   const handleClick = async (event) => {
 
     event.preventDefault();
 
-    if(!selectedFiles.length){
+    if (!fileSelect.length) {
       alert('Please selected a file!');
       return;
     }
 
     const formData = new FormData();
-    
-    selectedFiles.forEach((file, index) => {
+
+    fileSelect.forEach((file, index) => {
       formData.append(`files`, file);
     });
 
@@ -30,7 +36,7 @@ const UploadComp = () => {
         body: formData,
       })
 
-      if(response.ok){
+      if (response.ok) {
         alert('File Uploaded');
       } else {
         alert('Upload failed');
@@ -43,37 +49,41 @@ const UploadComp = () => {
   };
 
 
-  const handleFileChange = (event) => {
-  
+  const handleFileSelect = (event) => {
+
     const newFiles = Array.from(event.target.files);
-    setSelectedFiles(prevFiles => [...prevFiles, ...newFiles]);
+    setFileSelect(prevFiles => [...prevFiles, ...newFiles]);
 
-    console.log('selectedFiles---->', selectedFiles)
-
-    const mappedDisplayedFile = selectedFiles.map((file, i) => {
-      return(
-        <li key={i}>
-          {file.name}
-        </li>
-      )
-    })
-    // setDisplayFiles(mappedDisplayedFile);
-    setDisplayFiles((prevState) => [...prevState, ...mappedDisplayedFile]);
-    console.log('DisplayFiles--->', displayFiles)
   }
 
+  const handleDelete = (event) => {
+
+    const updatedFiles = fileSelect.filter((file) => {
+      if(event.target.id !== file.name){
+        return file;
+      }
+    });
+
+    setFileSelect(updatedFiles)
+  }
+
+  // just testing to see if handleDelete was working properly
+  // useEffect(()=>{
+  //   console.log('fileSelect', fileSelect)
+  // }, [fileSelect])
 
   return (
     <>
-      <input type="file" multiple onChange={handleFileChange}></input>
+      <p>Navigate to: <a onClick={handleNav}>My Dashboard</a></p>
+      <input type="file" multiple onChange={handleFileSelect}></input>
       <button onClick={handleClick}>Upload</button>
       <ul>
-        {/* {displayFiles} */}
-        {/* {selectedFiles.map(file => {
-          <li>{file.name}</li>
-        })} */}
-        {/* {selectedFiles.map((file, i) => (
-          <li key={i}>{file.name}</li>))} */}
+        {fileSelect.map((file, i) => (
+          <li key={`${file}-${i}`}>
+            {file.name}
+            <button id={file.name} onClick={handleDelete}>Delete</button>
+          </li>
+        ))}
       </ul>
     </>
   )
