@@ -76,15 +76,27 @@ const models = {
       // return tracks;
   ),
 
-  getTopArtists: () =>
+  getTopArtists: (userId) =>
     executeQuery(() =>
       supabase
-        .from('artists')
+        .from('top_artists_by_user')
         .select('*')
+        .eq('user_id', userId)
         .neq('playtime_ms', 0)
         .order('playtime_ms', { ascending: false })
         .limit(10)
     ),
+
+  // getTopArtists: (userId) =>
+  // executeQuery(() =>
+  //   supabase
+  //     .from('artists')
+  //     .select('*')
+  //     // .eq('user_id', userId)
+  //     .neq('playtime_ms', 0)
+  //     .order('playtime_ms', { ascending: false })
+  //     .limit(10)
+  // ),
 
   getTopAlbums: () =>
     executeQuery(() =>

@@ -1,8 +1,9 @@
 import express from 'express';
 const router = express.Router();
 import artistsController from '../controllers/artistsController.js';
+import usersController from '../controllers/usersController.js';
 
-router.get('/', artistsController.getTopArtists, (req, res) => {
+router.get('/', usersController.verifyJWT, artistsController.getTopArtists, (req, res) => {
   return res.status(200).json(res.locals.topArtists);
 });
 
