@@ -43,8 +43,6 @@ const AuthComp = () => {
       body: JSON.stringify(formData),
     });
     const responseJSON = await response.json();
-    console.log(response);
-    console.log(responseJSON);
     if (response.ok) {
       localStorage.setItem('token', responseJSON);
       navigate('/upload');

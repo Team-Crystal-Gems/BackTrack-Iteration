@@ -57,7 +57,6 @@ usersController.authUser = async (req, res, next) => {
 usersController.createJWT = (req, res, next) => {
   console.log('entered JWT middleware');
   const SECRET_KEY = process.env.JWT_KEY;
-  console.log(SECRET_KEY);
   const token = JWT.sign({ userId: res.locals.userId }, SECRET_KEY, {
     expiresIn: '1h',
   });
@@ -74,7 +73,6 @@ usersController.createJWT = (req, res, next) => {
 usersController.verifyJWT = (req, res, next) => {
   const SECRET_KEY = process.env.JWT_KEY;
   const token = req.cookies.token;
-  console.log(token);
   if (!token) {
     return res.redirect('/login');
   }
