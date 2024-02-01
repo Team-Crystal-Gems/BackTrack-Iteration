@@ -101,30 +101,30 @@ const models = {
       supabase.from('top_artists_by_year').select('*').eq('year', year)
     ),
 
-  getTopAlbumsByYear: (year) =>
-    executeQuery(() =>
-      supabase.from('top_albums_by_year').select('*').eq('year', year)
-    ),
+  // getTopAlbumsByYear: (year) =>
+  //   executeQuery(() =>
+  //     supabase.from('top_albums_by_year').select('*').eq('year', year)
+  //   ),
 
   getTopTracksByYear: (year) =>
     executeQuery(() =>
       supabase.from('top_tracks_by_year').select('*').eq('year', year)
     ),
 
-  getTopArtistsByYearByMonth: (year) =>
-    executeQuery(() =>
-      supabase.from('top_artists_by_year_month').select('*').eq('year', year)
-    ),
+  // getTopArtistsByYearByMonth: (year) =>
+  //   executeQuery(() =>
+  //     supabase.from('top_artists_by_year_month').select('*').eq('year', year)
+  //   ),
 
   getTopAlbumsByYearByMonth: (year) =>
     executeQuery(() =>
       supabase.from('top_albums_by_year_month').select('*').eq('year', year)
     ),
 
-  getTopTracksByYearByMonth: (year) =>
-    executeQuery(() =>
-      supabase.from('top_tracks_by_year_month').select('*').eq('year', year)
-    ),
+  // getTopTracksByYearByMonth: (year) =>
+  //   executeQuery(() =>
+  //     supabase.from('top_tracks_by_year_month').select('*').eq('year', year)
+  //   ),
 
   getAlbumImageUrl: (albumNameArray) =>
     executeQuery(() =>

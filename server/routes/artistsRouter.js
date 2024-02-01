@@ -11,9 +11,9 @@ router.get('/ByYear', artistsController.getTopArtistsByYear, (req, res) => {
   return res.status(200).json(res.locals.topArtistsByYear);
 });
 
-router.get('/topArtistsByYearByMonth', artistsController.getTopArtistsByYearByMonth, (req, res) => {
-  return res.status(200).json(res.locals.topArtistsByYearByMonth);
-});
+// router.get('/topArtistsByYearByMonth', artistsController.getTopArtistsByYearByMonth, (req, res) => {
+//   return res.status(200).json(res.locals.topArtistsByYearByMonth);
+// });
 
 
 
