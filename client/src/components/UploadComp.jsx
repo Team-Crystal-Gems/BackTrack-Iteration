@@ -48,6 +48,10 @@ const UploadComp = () => {
     }
   };
 
+  const handleClick2 = () => {
+    navigate('/dashboard');
+  }
+
 
   const handleFileSelect = (event) => {
 

@@ -11,7 +11,6 @@ router.post(
   usersController.authUser,
   usersController.createJWT,
   (req, res) => {
-    // console.log('INSIDE USER ROUTER...')
     res.sendStatus(200);
   }
 );
@@ -30,14 +29,13 @@ router.post(
 );
 router.post('/upload', upload.array('files'), usersController.verifyJWT, uploadController.processFiles, (req, res) => {
   res.sendStatus(200);
-})
+});
 
-router.get('/data', usersController.verifyJWT, (req, res) => {
-  // console.log('ELENA USERS ROUTER: /data: RES.LOCALS.USERID:   ', res.locals.userId);
-  // console.log('ELENA USERS ROUTER: /data: RES.LOCALS.USERNAME:   ', res.locals.userName);
-  //   res.status(200).json({
-//     user_id: res.locals.userId,
-  res.sendStatus(200);
-})
+router.get('/data', usersController.verifyJWT, usersController.getUserName, (req, res) => {
+  res.status(200).json({
+    user_id: res.locals.userId,
+    user_name: res.locals.userName
+  })
+});
 
-export default router
+export default router;
