@@ -7,10 +7,13 @@ import TopTracksComp from './TopTracksComp.jsx';
 import TopArtistsComp from './TopArtistsComp.jsx';
 import TopAlbumComp from './TopAlbumComp.jsx';
 import GraphComp from './GraphComp.jsx';
+import NavComp from './NavComp.jsx';
 
 const Dashboard = () => {
+
   return (
     <>
+      <NavComp />
       <LogStateComp />
       <NavbarComp />
       <YearSliderComp />
