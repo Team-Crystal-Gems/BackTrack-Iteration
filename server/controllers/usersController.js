@@ -13,7 +13,11 @@ usersController.createUser = async (req, res, next) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     console.log(hashedPassword, 'password hash');
-    const user = await models.createUser(req.body.email, hashedPassword, req.body.name);
+    const user = await models.createUser(
+      req.body.email,
+      hashedPassword,
+      req.body.name
+    );
     console.log('Created user in database');
     res.locals.userId = user.id;
     return next();
@@ -57,6 +61,7 @@ usersController.createJWT = (req, res, next) => {
   const token = JWT.sign({ userId: res.locals.userId }, SECRET_KEY, {
     expiresIn: '1h',
   });
+  res.locals.jwt = token;
   res.cookie('token', token, {
     httpOnly: true,
     secure: true,
@@ -69,7 +74,7 @@ usersController.createJWT = (req, res, next) => {
 usersController.verifyJWT = (req, res, next) => {
   const SECRET_KEY = process.env.JWT_KEY;
   const token = req.cookies.token;
-  console.log(token)
+  console.log(token);
   if (!token) {
     return res.redirect('/login');
   }
@@ -122,19 +127,20 @@ usersController.googleOAuthLogin = async (req, res, next) => {
 
 usersController.getUserName = (req, res, next) => {
   console.log('INSIDE USER CONTROLLER: GET USER NAME...');
-  models.getUserName(res.locals.userId)
-    .then(data => {
+  models
+    .getUserName(res.locals.userId)
+    .then((data) => {
       console.log('USERS CONTROLLER: getUserName: RETURNED DATA: ', data);
       res.locals.userName = data;
       return next();
     })
-    .catch(err => {
+    .catch((err) => {
       return next({
         log: 'userController.getUserName - error querying name from users table',
         status: 400,
-        message: { err: JSON.stringify(err) },        
-      }); 
-    })
+        message: { err: JSON.stringify(err) },
+      });
+    });
 };
 
 export default usersController;

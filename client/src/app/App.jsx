@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import AuthComp from '../components/AuthComp.jsx';
 import Dashboard from '../components/Dashboard.jsx';
+import PrivateRoute from '../components/PrivateRoute.jsx';
 
 import {
   fetchTopTracks,
@@ -20,9 +21,11 @@ export function App() {
     <>
       <GoogleOAuthProvider clientId="61323721664-ut6009ddm9ce3bf41albrsi53gtbhvq2.apps.googleusercontent.com">
         <Routes>
-          <Route path="/" element={<AuthComp />}/>
-          <Route path="/upload" element={<UploadComp />}/>
-          <Route path="/dashboard" element={<Dashboard />}/>
+          <Route path="/" element={<AuthComp />} />
+          <Route path="" element={<PrivateRoute />}>
+            <Route path="/upload" element={<UploadComp />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
         </Routes>
       </GoogleOAuthProvider>
     </>
