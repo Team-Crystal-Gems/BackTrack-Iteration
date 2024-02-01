@@ -11,24 +11,12 @@ const SliderComp = () => {
 
   const { year, track: chosenTrack, status, error } = useSelector(state => state.chosen);
 
-  const [userData, setUserData] = useState(
-    {
-      user_id: '',
-      user_name: ''
-    }
-  );
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     fetch('/users/data')
       .then(response => response.json())
-      .then(jsonData => setUserData(prev => {
-        const formatedName = jsonData.user_name[0].toUpperCase() + jsonData.user_name.slice(1).toLowerCase();
-        return {
-          ...prev,
-          user_id: jsonData.user_id,
-          user_name: formatedName
-        }
-      }))
+      .then(jsonData => setUserName(jsonData.user_name[0].toUpperCase() + jsonData.user_name.slice(1).toLowerCase()))
       .catch(err => console.log('SliderComp.jsx: fetch /users/data: Error: ', err));
   }, []);
 
@@ -61,7 +49,7 @@ const SliderComp = () => {
     if (status === 'idle') {
       fetchData()
     }
-  }, [dispatch, status, userData]);
+  }, [dispatch, status, userName]);
 
   function handleSliderInput(e) {
     dispatch(setYear(e.target.value));
@@ -102,7 +90,7 @@ const SliderComp = () => {
 
   return (
     <div id="landingAndSticky">
-      <h1 className="landing hide">{userData.user_name},</h1>
+      <h1 className="landing hide">{userName},</h1>
       <h1 className="landing hide">In your Spotify</h1>
       <h1 className="landing hide">Adventure,</h1>
       <h1 className="landing hide">Discover...</h1>

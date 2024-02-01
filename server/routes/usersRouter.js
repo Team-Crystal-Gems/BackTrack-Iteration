@@ -58,7 +58,6 @@ router.get(
   usersController.getUserName,
   (req, res) => {
     res.status(200).json({
-      user_id: res.locals.userId,
       user_name: res.locals.userName,
     });
   }
