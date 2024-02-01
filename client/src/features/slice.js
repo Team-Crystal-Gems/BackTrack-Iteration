@@ -38,12 +38,8 @@ const dataSlice = (endpoint, filter) => {
   const actions = createAsyncThunk( //ByYear?year=
 
     `fetch/${endpoint}`,
-    async ({ year, userId }) => {
+    async (year) => {
       let url = `/${endpoint}/`;
-      // console.log('FETCH/TRACKS: YEAR:   ', year);
-      // console.log('FETCH/TRACKS: USER ID:   ', userId);
-      // let url = userId ? `/${endpoint}?id=${userId}/` : `/${endpoint}/`
-      if (userId) url = `/${endpoint}?id=${userId}/`;
       if (year != 2024) {
         url = `${url}${filter}${year}`;
       }

@@ -1,9 +1,9 @@
 import express from 'express';
 const router = express.Router();
 import tracksController from '../controllers/tracksController.js';
+import usersController from '../controllers/usersController.js';
 
-router.get('/', tracksController.getTopTracks, (req, res) => {
-  console.log('inside tracksRouter get /');
+router.get('/', usersController.verifyJWT, tracksController.getTopTracks, (req, res) => {
   return res.status(200).json(res.locals.topTracks);
 });
 

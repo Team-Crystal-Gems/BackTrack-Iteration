@@ -35,9 +35,7 @@ const SliderComp = () => {
   const fetchData = () => {
     // the below .then on the dispatch then matching the fulfilled of dispatch to action allows us to wait for the fetchTopTracks to complete before dispatching the chosenTrack.
     // trying to set the chosen track when the page first loads was resulting in an error, as TopTracks hadn't yet returned its promise.
-    console.log('SLIDE COMP: FETCH DATA: USER ID:   ', userData.user_id);
-    const userId = userData.user_id;
-    dispatch(fetchTopTracks({ year, userId })).then((action) => {
+    dispatch(fetchTopTracks(year)).then((action) => {
       if (fetchTopTracks.fulfilled.match(action) & !chosenTrack.name) {
         dispatch(setChosenTrack(action.payload[0]))
       }

@@ -4,9 +4,9 @@ const tracksController = {};
 
 tracksController.getTopTracks = async (req, res, next) => {
   try {
-    const data = await models.getTopTracks();
+    const userId = res.locals.userId;
+    const data = await models.getTopTracks(userId);
     res.locals.topTracks = data;
-    // console.log('topTracks in tracksController', topTracks);
     return next();
 
   } catch (error) {
