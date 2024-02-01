@@ -34,18 +34,20 @@ const AuthComp = () => {
     });
   };
 
-    const handleSubmit = async (event) => {
-      event.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-      const response = await fetch(`/users/${authStage}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) navigate('/upload');
-      else alert('Invalid credentials. Try again');
-    };
+    const response = await fetch(`/users/${authStage}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+    const responseJSON = await response.json();
+    if (response.ok) {
+      localStorage.setItem('token', responseJSON);
+      navigate('/upload');
+    } else alert('Invalid credentials. Try again');
+  };
 
   // https://www.npmjs.com/package/@react-oauth/google
   // need func to redirect to /dashboard on success
@@ -58,10 +60,16 @@ const AuthComp = () => {
           Authorization: `Bearer ${response.access_token}`,
           'Content-Type': 'application/json',
         },
-      }).catch((error) => {
-        console.error(error);
-      });
-      navigate('/upload');
+      })
+        .then((response) => response.json())
+        .then((token) => {
+          console.log(token);
+          localStorage.setItem('token', token);
+          navigate('/upload');
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
     onError: () => console.log('Error on Google Oauth'),
   });
@@ -106,10 +114,10 @@ const AuthComp = () => {
           <button className="btn">{compProps.submitBtnLabel}</button>
         </form>
         <div className="btn--container">
-        <p>or</p>
-            <button className="btn" onClick={() => googleOAuth()}>
-              {compProps.submitBtnLabel} with Google
-            </button>
+          <p>or</p>
+          <button className="btn" onClick={() => googleOAuth()}>
+            {compProps.submitBtnLabel} with Google
+          </button>
         </div>
         {authStage === 'signup' && (
           <p>
