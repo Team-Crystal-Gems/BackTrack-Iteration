@@ -51,7 +51,7 @@ const executeQuery = async (queryCallback) => {
 
 // Consolidated models down into object of "models" to be change upon project reqs changing
 const models = {
-  
+
   getTopTracks: (userId) => 
     executeQuery(
       () =>
@@ -106,9 +106,9 @@ const models = {
   //     supabase.from('top_albums_by_year').select('*').eq('year', year)
   //   ),
 
-  getTopTracksByYear: (year) =>
+  getTopTracksByYear: (year, userId) =>
     executeQuery(() =>
-      supabase.from('top_tracks_by_year').select('*').eq('year', year)
+      supabase.from('top_tracks_by_user_and_year').select('*').eq('year', year).eq('user_id', userId)
     ),
 
   // getTopArtistsByYearByMonth: (year) =>
