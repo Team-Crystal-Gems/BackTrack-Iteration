@@ -170,6 +170,7 @@ const models = {
         .from('sessions_testing')
         .update({ track_id: track.id })
         .eq('track_uri', track.uri);
+      if (error) console.error('Foreign key tracks error:  ', error);
     }
   },
 
@@ -183,6 +184,12 @@ const models = {
         .from('sessions_testing')
         .update({ artist_id: artist.id })
         .eq('artist_name', artist.name);
+      if (error) console.error('Foreign key artists error:  ', error);
+      const { data2, error2 } = await supabase
+        .from('tracks_testing')
+        .update({ artist_id: artist.id })
+        .eq('artist_name', artist.name);
+      if (error2) console.error('Foreign key artists error 2:  ', error2);
     }
   },
 
@@ -196,6 +203,12 @@ const models = {
         .from('sessions_testing')
         .update({ album_id: album.id })
         .eq('album_name', album.name);
+      if (error) console.error('Foreign key albums error:  ', error);
+      const { data2, error2 } = await supabase
+        .from('tracks_testing')
+        .update({ album_id: album.id })
+        .eq('album_name', album.name);
+      if (error2) console.error('Foreign key albums error 2:  ', error2);
     }
   },
 
