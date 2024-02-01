@@ -7,7 +7,7 @@ router.get('/', usersController.verifyJWT, artistsController.getTopArtists, (req
   return res.status(200).json(res.locals.topArtists);
 });
 
-router.get('/ByYear', artistsController.getTopArtistsByYear, (req, res) => {
+router.get('/ByYear', usersController.verifyJWT, artistsController.getTopArtistsByYear, (req, res) => {
   console.log('in artistsRouter get /ByYear');
   return res.status(200).json(res.locals.topArtistsByYear);
 });

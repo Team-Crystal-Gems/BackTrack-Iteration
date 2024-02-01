@@ -6,7 +6,6 @@ artistsController.getTopArtists = async (req, res, next) => {
   try {
     const userId = res.locals.userId;
     const topArtists = await models.getTopArtists(userId);
-    console.log('ARTISTS CONTROLLER: GET TOP ARTISTS: RETURNED DATA:   ', topArtists);
     res.locals.topArtists = topArtists;
     return next();
 
@@ -17,8 +16,9 @@ artistsController.getTopArtists = async (req, res, next) => {
 
 artistsController.getTopArtistsByYear = async (req, res, next) => {
   const { year } = req.query;
+  const userId = res.locals.userId;
   try {
-    const topArtistsByYear = await models.getTopArtistsByYear(year);
+    const topArtistsByYear = await models.getTopArtistsByYear(year, userId);
     res.locals.topArtistsByYear = topArtistsByYear;
     return next();
 

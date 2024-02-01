@@ -5,9 +5,7 @@ import { useSelector } from 'react-redux';
 const TopAlbumPage = () => {
   const { year } = useSelector(state => state.chosen)
   const {arrData: topAlbumsByYear, status: statusTopAlbumsByYear, error: errorTopAlbumsByYear} = useSelector(state => state.topAlbums);
-  // console.log('topAlbums in TopAlbumPage: ', topAlbumsByYear);
   const [album, setAlbum] = useState(null);
-  // console.log('album in TopAlbumPage:', album)
 
   useEffect(() => {
     function getFirstAlbumWithImage(topAlbumsByYear) {
