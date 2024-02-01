@@ -80,7 +80,6 @@ usersController.verifyJWT = (req, res, next) => {
   }
   try {
     const decoded = JWT.verify(token, SECRET_KEY);
-    console.log('USER CONTROLLER: VERIFY JWT: DECODED:   ', decoded);
     res.locals.userId = decoded.userId;
     return next();
   } catch {
@@ -126,12 +125,10 @@ usersController.googleOAuthLogin = async (req, res, next) => {
 };
 
 usersController.getUserName = (req, res, next) => {
-  console.log('INSIDE USER CONTROLLER: GET USER NAME...');
   models
     .getUserName(res.locals.userId)
     .then((data) => {
-      console.log('USERS CONTROLLER: getUserName: RETURNED DATA: ', data);
-      res.locals.userName = data;
+      res.locals.userName = data[0].name;
       return next();
     })
     .catch((err) => {
