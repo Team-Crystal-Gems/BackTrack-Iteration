@@ -3,7 +3,7 @@ const router = express.Router();
 import tracksController from '../controllers/tracksController.js';
 
 router.get('/', tracksController.getTopTracks, (req, res) => {
-  // console.log('in tracksRouter get /');
+  console.log('inside tracksRouter get /');
   return res.status(200).json(res.locals.topTracks);
 });
 

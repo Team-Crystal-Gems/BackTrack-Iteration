@@ -57,7 +57,7 @@ const models = {
     executeQuery(
       () =>
         supabase
-          .from('tracks')
+          .from('top_tracks_by_user')
           .select('*')
           .order('playtime_ms', { ascending: false })
           .limit(10)
