@@ -3,12 +3,17 @@ import { models } from '../models/model.js';
 const uploadController = {};
 
 uploadController.processFiles = async (req, res, next) => {
-
+    function splitIntoChunks(array, chunkSize = 1000) {
+        const chunks = [];
+        while (array.length) {
+            chunks.push(array.splice(0, chunkSize));
+        }
+        return chunks;
+    }
 
     try {
         for (const file of req.files) {
             if (file.mimetype === 'application/json') {
-                console.log('After if statment')
                 const jsonData = JSON.parse(file.buffer.toString())
                 const filteredData = jsonData.filter(item => item.spotify_track_uri).map(item => ({
                     album_name: item.master_metadata_album_album_name,
@@ -20,15 +25,16 @@ uploadController.processFiles = async (req, res, next) => {
                     ts: item.ts,
                     user_id: res.locals.userId
                 }))
-                console.log(filteredData[0])
+                while (filteredData.length > 0) {
+                    await models.uploadData(filteredData.splice(0, 500))
+                }
                 // need user_id as well so that sessions are unique to users
-                await models.uploadData(filteredData);
             }
         }
-        // add foreign key relation for sessions
-        await models.tracksForeignKey();
-        await models.artistsForeignKey();
-        await models.albumsForeignKey();
+        // add foreign key relation for sessions -- NOT NEEDED
+        // await models.tracksForeignKey();
+        // await models.artistsForeignKey();
+        // await models.albumsForeignKey();
         return next()
     } catch (error) {
         console.error(error);
