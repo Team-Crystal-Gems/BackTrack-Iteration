@@ -8,6 +8,7 @@ spotifyController.getTrackImage = async (req, res, next) => {
   for (const track of tracks) {
     if (!track.image_url || !track.audio_clip_url) {
         const uri = track.uri
+        const token = await getSpotifyToken();
         const response = await fetch(
             `https://api.spotify.com/v1/tracks/${uri}?market=US`,
             {
@@ -15,7 +16,7 @@ spotifyController.getTrackImage = async (req, res, next) => {
         
               // we call the getSpotifyToken function to get the token
               // which is either cached or gets refreshed (so to speak)
-              headers: { Authorization: 'Bearer ' + (await getSpotifyToken()) },
+              headers: { Authorization: 'Bearer ' + token },
             }
           );
           // console.log('getTrackInfo response', response);
