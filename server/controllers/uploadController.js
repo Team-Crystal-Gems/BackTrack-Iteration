@@ -26,7 +26,7 @@ uploadController.processFiles = async (req, res, next) => {
                     user_id: res.locals.userId
                 }))
                 while (filteredData.length > 0) {
-                    await models.uploadData(filteredData.splice(0, 500))
+                    await models.uploadData(filteredData.splice(0, 100))
                 }
                 // need user_id as well so that sessions are unique to users
             }
@@ -35,6 +35,7 @@ uploadController.processFiles = async (req, res, next) => {
         // await models.tracksForeignKey();
         // await models.artistsForeignKey();
         // await models.albumsForeignKey();
+        console.log('FINISHED UPLOADING DATA')
         return next()
     } catch (error) {
         console.error(error);
