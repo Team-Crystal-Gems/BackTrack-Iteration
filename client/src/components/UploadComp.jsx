@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavComp from "./NavComp.jsx";
+import NavbarComp from "./NavbarComp.jsx";
 
 const UploadComp = () => {
 
@@ -80,8 +81,9 @@ const UploadComp = () => {
   return (
     <>
       <NavComp />
+    <div className="authenticationComp--container">
+      {/* <NavbarComp /> */}
       <input type="file" multiple onChange={handleFileSelect}></input>
-      <button onClick={handleClick}>Upload</button>
       <ul>
         {fileSelect.map((file, i) => (
           <li key={`${file}-${i}`}>
@@ -90,7 +92,10 @@ const UploadComp = () => {
           </li>
         ))}
       </ul>
-    </>
+
+      <button onClick={handleClick}>Upload</button>
+    </div>
+</>
   )
 };
 

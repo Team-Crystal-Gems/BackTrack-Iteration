@@ -77,7 +77,7 @@ const AuthComp = () => {
   return (
     <div className="authenticationPage--container">
       <div className="authenticationComp--container">
-        <h1>{compProps.header}</h1>
+        <h1 className="authenticationComp--font">{compProps.header}</h1>
         <form onSubmit={handleSubmit}>
           {compProps.nameLabel && <label htmlFor="input--name">Name</label>}
           {compProps.nameLabel && (

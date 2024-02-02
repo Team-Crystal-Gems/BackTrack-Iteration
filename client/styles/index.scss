@@ -1,6 +1,6 @@
 // importing of fonts
 // @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 // Added Rubik as header font for our app
@@ -17,6 +17,9 @@ $skyeBlue: #6072d1;
 $font-family-mono: 'Red Hat Mono', monospace;
 $font-family-roboto-mono: 'Roboto Mono', monospace;
 $font-family-header: 'Rubik', sans-serif;
+
+// Daniel
+$font-family-poppins: 'Poppins', monospace;
 //gradient for headers / slider etc:
 $gradient-text: -webkit-linear-gradient(60deg, $purple, $blue, $green);
 // border radius used for list elements, slider etc:
@@ -236,7 +239,7 @@ ul {
   justify-content: center;
 
   img {
-    margin: 25px;
+    margin: 25px 25px 0px;
     height: 50px;
   }
 
@@ -246,6 +249,17 @@ ul {
     }
   }
 }
+
+.navBar p {
+  font-family: $font-family-poppins;
+  margin: 5px 0px;
+}
+
+
+// Daniel - may not use this
+// .navBar--caption {
+//   display: flex;
+// }
 
 .gradientHeader {
   background: $gradient-text;
@@ -528,12 +542,22 @@ ul {
 
 /* ITERATION STYLES */
 .authenticationPage--container {
+
+  // display: flex;
   margin-top: 20%;
 }
 
 .authenticationComp--container {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border: 1px solid white;
-  width: 330px;
+  // width: 330px;
+  // flex-basis: 400px;
+  margin: 200px;
+  font-family: $font-family-poppins;
 }
 
 .authenticationComp--container form {
@@ -545,6 +569,10 @@ ul {
   margin-bottom: 10px;
 }
 
+// .authenticationComp--font {
+//   font-family: $font-family-poppins;
+// }
+
 .btn--container {
   display: flex;
   flex-direction: column;
@@ -554,8 +582,11 @@ ul {
 
 .btn {
   border-radius: 100px;
+  padding: 15px 30px;
 }
 
 .google-btn {
   margin: 0 auto;
 }
+
+// UploadComp

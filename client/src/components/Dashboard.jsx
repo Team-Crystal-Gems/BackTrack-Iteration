@@ -15,7 +15,7 @@ const Dashboard = () => {
     <>
       <NavComp />
       <LogStateComp />
-      <NavbarComp />
+      {/* <NavbarComp /> */}
       <YearSliderComp />
       <TopTracksComp />
       <TopArtistsComp />
