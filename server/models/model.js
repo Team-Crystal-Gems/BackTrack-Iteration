@@ -117,9 +117,9 @@ const models = {
   //     supabase.from('top_artists_by_year_month').select('*').eq('year', year)
   //   ),
 
-  getTopAlbumsByYearByMonth: (year) =>
+  getTopAlbumsByYearByMonth: (year, userId) =>
     executeQuery(() =>
-      supabase.from('top_albums_by_year_month').select('*').eq('year', year)
+      supabase.from('top_albums_by_user_year_month').select('*').eq('year', year).eq('user_id', userId)
     ),
 
   // getTopTracksByYearByMonth: (year) =>
