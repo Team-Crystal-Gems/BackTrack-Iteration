@@ -99,11 +99,13 @@ ul {
   z-index: 10;
   // margin-bottom: 100px;
   height: 100vh;
+
   h1 {
     font-size: 84px;
     margin: 0px 20px;
     font-family: $font-family-header;
   }
+
   margin-bottom: 50px;
 }
 
@@ -111,6 +113,7 @@ ul {
   display: flex;
   align-items: center;
   margin-bottom: 50px;
+
   h1 {
     margin: 0px 20px;
   }
@@ -124,6 +127,7 @@ ul {
     text-align: start;
     text-transform: uppercase;
   }
+
   margin: auto;
   // width: 1300px;
 
@@ -227,6 +231,7 @@ ul {
   justify-content: 'flex-start';
   align-items: 'center';
 }
+
 // .recharts-axis-label {
 //   fill: $blue; // Color
 //   font-family: 'Rubik', sans-serif; // Font family
@@ -234,359 +239,438 @@ ul {
 //   // Add other styling properties as needed
 // }
 
-.navBar {
-  display: flex;
-  justify-content: center;
-
-  img {
-    margin: 25px 25px 0px;
-    height: 50px;
-  }
-
-  + h3 {
-    @media (max-width: 950px) {
-      font-size: 30px;
-    }
-  }
-}
-
-.navBar p {
-  font-family: $font-family-poppins;
-  margin: 5px 0px;
-}
-
-
-// Daniel - may not use this
-// .navBar--caption {
+// .navBar {
 //   display: flex;
+//   justify-content: center;
+
+//   img {
+//     margin: 25px 25px 0px;
+//     height: 50px;
+//   }
+
+//   +h3 {
+//     @media (max-width: 950px) {
+//       font-size: 30px;
+//     }
+//   }
 // }
 
-.gradientHeader {
-  background: $gradient-text;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-family: $font-family-mono;
-  font-size: 64px;
-  text-align: center;
-  @media (max-width: 1215px) {
-    font-size: 50px;
-  }
-  @media (max-width: 950px) {
-    font-size: 40px;
-  }
-}
+// .navBar p {
+//   font-family: $font-family-poppins;
+//   margin: 5px 0px;
+// }
 
-.TopTracksAndImageContainer {
-  display: flex;
-  justify-content: center;
-  gap: calc(15%);
-  align-items: center;
-  margin-bottom: 100px;
-  // min-width: 1300px;
-  @media (max-width: 1055px) {
+// Daniel - for NavComp.jsx
+.nav {
+  display: grid;
+  grid-template-columns: [left] 1fr [center] 2fr [right] 1fr;
+  font-size: .7em;
+
+
+  .center-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: auto;
+      margin-left: auto;
+  
+      // border: solid 1px white;
+      // flex: 1;
+      img {
+        width: 60%;
+        height: auto;
+        max-height: 120px;
+        max-width: auto;
+      }
+    }
+  
+    .right-nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      align-self: center;
+      // margin-left: auto;
+      // border: solid 1px white;
+      padding: .5em;
+  
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: .5em;
+        width: 5em;
+      }
+  
+      img {
+        width: 2em;
+        height: 2em;
+      }
+  
+      p {
+        margin: .5em 0em 0em;
+      }
+  
+    }
+  }
+  
+  // #play-icon {
+  //   // width: 50%;
+  //   // height: auto;
+  //   max-width: 100%;
+  //   max-height: 100%;
+  //   // width: 25px
+  // }
+  
+  // Daniel - may not use this
+  // .navBar--caption {
+  //   display: flex;
+  // }
+  
+  .gradientHeader {
+    background: $gradient-text;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: $font-family-mono;
+    font-size: 64px;
+    text-align: center;
+  
+    @media (max-width: 1215px) {
+      font-size: 50px;
+    }
+  
+    @media (max-width: 950px) {
+      font-size: 40px;
+    }
+  }
+  
+  .TopTracksAndImageContainer {
+    display: flex;
+    justify-content: center;
+    gap: calc(15%);
+    align-items: center;
+    margin-bottom: 100px;
+  
+    // min-width: 1300px;
+    @media (max-width: 1055px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  .TopTracksContainer {
+    color: $white;
+    font-family: $font-family-mono;
+    width: 422px;
+  
+    h3 {
+      margin: 0px;
+      text-align: left;
+  
+      @media (max-width: 1055px) {
+        text-align: center;
+      }
+    }
+  }
+  
+  .TopTracksContainer li {
+    border: 0.3px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    width: 400px;
+    height: 20px;
+    padding: 10px;
+    margin: 10px 0px;
+    border-radius: $border-radius;
+    white-space: nowrap;
+    overflow: hidden;
+    // position: relative;
+    cursor: pointer;
+  
+    img {
+      height: 15px;
+      width: 15px;
+      margin: 0px 10px;
+    }
+  }
+  
+  .trackScrollWrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .tracks {
+    position: absolute;
+    overflow: hidden;
+    display: block;
+    width: 200%;
+  
+    div {
+      display: inline-block;
+      width: 50%;
+    }
+  }
+  
+  @keyframes marquee {
+    0% {
+      left: 0;
+    }
+  
+    100% {
+      left: -100%;
+    }
+  }
+  
+  .onPlay {
+    position: absolute;
+    overflow: hidden;
+    display: block;
+    width: 200%;
+    animation: marquee 8s linear infinite;
+  
+    div {
+      display: inline-block;
+      width: 50%;
+    }
+  }
+  
+  .trackImage {
+    h3 {
+      margin: 0;
+      text-align: end;
+      margin-bottom: 15px;
+  
+      @media (max-width: 1055px) {
+        text-align: center;
+      }
+    }
+  }
+  
+  .trackImageCard {
+    background: linear-gradient($lightBlue, $skyeBlue);
+    width: 500px;
+    height: 515px;
+    display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
-  }
-}
-
-.TopTracksContainer {
-  color: $white;
-  font-family: $font-family-mono;
-  width: 422px;
-  h3 {
-    margin: 0px;
-    text-align: left;
-    @media (max-width: 1055px) {
-      text-align: center;
+  
+    img {
+      padding-top: 25px;
+      height: 400px;
+      width: 425px;
+      object-fit: cover;
+    }
+  
+    h4 {
+      font-weight: 300;
+      text-align: end;
+      margin-right: -250px;
     }
   }
-}
-
-.TopTracksContainer li {
-  border: 0.3px solid rgba(255, 255, 255, 0.7);
-  display: flex;
-  width: 400px;
-  height: 20px;
-  padding: 10px;
-  margin: 10px 0px;
-  border-radius: $border-radius;
-  white-space: nowrap;
-  overflow: hidden;
-  // position: relative;
-  cursor: pointer;
-  img {
-    height: 15px;
-    width: 15px;
-    margin: 0px 10px;
-  }
-}
-
-.trackScrollWrapper {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.tracks {
-  position: absolute;
-  overflow: hidden;
-  display: block;
-  width: 200%;
-  div {
-    display: inline-block;
-    width: 50%;
-  }
-}
-
-@keyframes marquee {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: -100%;
-  }
-}
-.onPlay {
-  position: absolute;
-  overflow: hidden;
-  display: block;
-  width: 200%;
-  animation: marquee 8s linear infinite;
-  div {
-    display: inline-block;
-    width: 50%;
-  }
-}
-
-.trackImage {
-  h3 {
-    margin: 0;
-    text-align: end;
-    margin-bottom: 15px;
-    @media (max-width: 1055px) {
-      text-align: center;
+  
+  .topAlbum {
+    h3 {
+      margin: 0;
+      text-align: end;
+      word-wrap: break-word;
+      margin-bottom: 15px;
+  
+      @media (max-width: 1055px) {
+        text-align: center;
+      }
     }
   }
-}
-
-.trackImageCard {
-  background: linear-gradient($lightBlue, $skyeBlue);
-  width: 500px;
-  height: 515px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  img {
-    padding-top: 25px;
-    height: 400px;
-    width: 425px;
-    object-fit: cover;
-  }
-  h4 {
-    font-weight: 300;
-    text-align: end;
-    margin-right: -250px;
-  }
-}
-
-.topAlbum {
-  h3 {
-    margin: 0;
-    text-align: end;
-    word-wrap: break-word;
-    margin-bottom: 15px;
-    @media (max-width: 1055px) {
-      text-align: center;
+  
+  .albumCard {
+    background: rgb(0, 133, 255);
+    background: linear-gradient(16deg,
+        rgba(238, 0, 255, 0.2) 0%,
+        rgba(0, 133, 255, 1) 100%);
+    width: 500px;
+    height: 515px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  
+    img {
+      padding-top: 25px;
+      height: 400px;
+      width: 425px;
+      object-fit: cover;
+    }
+  
+    h4 {
+      font-weight: 300;
+      text-align: end;
+      margin-right: -250px;
     }
   }
-}
-
-.albumCard {
-  background: rgb(0, 133, 255);
-  background: linear-gradient(
-    16deg,
-    rgba(238, 0, 255, 0.2) 0%,
-    rgba(0, 133, 255, 1) 100%
-  );
-  width: 500px;
-  height: 515px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  img {
-    padding-top: 25px;
-    height: 400px;
-    width: 425px;
-    object-fit: cover;
+  
+  // styling for the graph wrapper
+  // styling for the graph wrapper
+  
+  .artistsWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    // height: 50vh;
+    justify-content: center;
+    align-items: center;
+  
+    h3 {
+      font-family: $font-family-header;
+      font-weight: 800;
+      margin-top: 3em;
+      margin-bottom: 1em;
+      font-size: 60px;
+      background: $white;
+      // background: $gradient-text;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
   }
-  h4 {
-    font-weight: 300;
-    text-align: end;
-    margin-right: -250px;
+  
+  .artists {
+    width: 60%;
+    height: 40%;
+    margin-bottom: 3em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
   }
-}
-
-// styling for the graph wrapper
-// styling for the graph wrapper
-
-.artistsWrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  // height: 50vh;
-  justify-content: center;
-  align-items: center;
-  h3 {
-    font-family: $font-family-header;
-    font-weight: 800;
-    margin-top: 3em;
-    margin-bottom: 1em;
-    font-size: 60px;
-    background: $white;
-    // background: $gradient-text;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+  
+  .artists p {
+    font-family: $font-family-roboto-mono;
+    // font-family: $font-family-header;
+    font-size: 30px;
+    color: $white;
   }
-}
-
-.artists {
-  width: 60%;
-  height: 40%;
-  margin-bottom: 3em;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 2em;
-}
-
-.artists p {
-  font-family: $font-family-roboto-mono;
-  // font-family: $font-family-header;
-  font-size: 30px;
-  color: $white;
-}
-
-.topAlbumsDisplay {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  // height: 60vh;
-  // justify-content: center;
-  align-items: center;
-  h3 {
-    // width: 1010px;
-    // height: 76px;
-    // top: 3036px;
-    // left: 359px;
-    font-family: $font-family-header;
-    font-size: 60px;
-    font-weight: 700;
-    line-height: 76px;
-    // letter-spacing: 0em;
-    background: $white;
-    text-align: center;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-top: 3em;
+  
+  .topAlbumsDisplay {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    // height: 60vh;
+    // justify-content: center;
+    align-items: center;
+  
+    h3 {
+      // width: 1010px;
+      // height: 76px;
+      // top: 3036px;
+      // left: 359px;
+      font-family: $font-family-header;
+      font-size: 60px;
+      font-weight: 700;
+      line-height: 76px;
+      // letter-spacing: 0em;
+      background: $white;
+      text-align: center;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 3em;
+    }
   }
-}
-
-// .albumContainer img {
-// width: 980px;
-// height: 988px;
-// position: absolute;
-// top: 3164px;
-// left: 374px;
-// display: flex;
-// flex-direction: column;
-// justify-content: center;
-// align-items: center;
-// position: absolute;
-// top: 3164px;
-// left: 374px;
-// display: flex;
-// flex-direction: column;
-// justify-content: center;
-// align-items: center;
-// width: 800px;
-// height: 800px;
-// }
-
-.albumContainer {
-  background: linear-gradient($lightBlue, $skyeBlue);
-  width: 800px;
-  height: 824px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  img {
-    padding-top: 25px;
-    height: 640px;
-    width: 660px;
-    object-fit: cover;
-  }
-  h4 {
-    font-weight: 300;
-    text-align: end;
-    margin-right: -250px;
-  }
-}
-
-/* ITERATION STYLES */
-.authenticationPage--container {
-
+  
+  // .albumContainer img {
+  // width: 980px;
+  // height: 988px;
+  // position: absolute;
+  // top: 3164px;
+  // left: 374px;
   // display: flex;
-  margin-top: 20%;
-}
-
-.authenticationComp--container {
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid white;
-  // width: 330px;
-  // flex-basis: 400px;
-  margin: 200px;
-  font-family: $font-family-poppins;
-}
-
-.authenticationComp--container form {
-  display: flex;
-  flex-direction: column;
-}
-
-.authenticationComp--container input {
-  margin-bottom: 10px;
-}
-
-// .authenticationComp--font {
-//   font-family: $font-family-poppins;
-// }
-
-.btn--container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.btn {
-  border-radius: 100px;
-  padding: 15px 30px;
-}
-
-.google-btn {
-  margin: 0 auto;
-}
-
-// UploadComp
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // position: absolute;
+  // top: 3164px;
+  // left: 374px;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // width: 800px;
+  // height: 800px;
+  // }
+  
+  .albumContainer {
+    background: linear-gradient($lightBlue, $skyeBlue);
+    width: 800px;
+    height: 824px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  
+    img {
+      padding-top: 25px;
+      height: 640px;
+      width: 660px;
+      object-fit: cover;
+    }
+  
+    h4 {
+      font-weight: 300;
+      text-align: end;
+      margin-right: -250px;
+    }
+  }
+  
+  /* ITERATION STYLES */
+  .authenticationPage--container {
+  
+    // display: flex;
+    margin-top: 20%;
+  }
+  
+  .authenticationComp--container {
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    // width: 330px;
+    // flex-basis: 400px;
+    margin: 200px;
+    font-family: $font-family-poppins;
+  }
+  
+  .authenticationComp--container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .authenticationComp--container input {
+    margin-bottom: 10px;
+  }
+  
+  // .authenticationComp--font {
+  //   font-family: $font-family-poppins;
+  // }
+  
+  .btn--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .btn {
+    border-radius: 100px;
+    padding: 15px 30px;
+  }
+  
+  .google-btn {
+    margin: 0 auto;
+  }
+  
+  // UploadComp
