@@ -149,7 +149,7 @@ const models = {
       .from('users')
       .insert([{ email, password, name }])
       .select();
-    return data;
+    return data[0];
   },
 
 
