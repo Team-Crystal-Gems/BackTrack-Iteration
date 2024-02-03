@@ -10,14 +10,16 @@ const TopAlbumPage = () => {
     album_name: chosenTrackAlbumName,
   } = useSelector(state => state.chosen.track);
 
+  const { arrData: topAlbums, status: statusTopAlbums, error: errorTopAlbums } = useSelector(state => state.topAlbums);
+
   return (
     <div className='topAlbumsDisplay'>
       <h3>And couldn't get enough of:</h3>
       <div className='albumContainer'>
         {chosenTrackImage ?
           <>
-            <img src={chosenTrackImage} alt="image" />
-            <h4>{chosenTrackArtistName} <br /> {chosenTrackAlbumName}</h4>
+            <img src={topAlbums[0].image_url} alt="image" />
+            <h4>{topAlbums[0].artist_name} <br /> {topAlbums[0].name}</h4>
           </>
           :
           <>
