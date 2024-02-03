@@ -3,12 +3,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 const initialState = {
   authStage: 'signup',
   signupProps: {
-    header: 'Sign up to start listening',
+    header: 'Sign up',
     nameLabel: true,
     submitBtnLabel: 'Sign up',
   },
   loginProps: {
-    header: 'Log in to BackTrack',
+    header: 'Log in',
     nameLabel: false,
     submitBtnLabel: 'Log in',
   }
