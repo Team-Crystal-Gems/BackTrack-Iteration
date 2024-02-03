@@ -5,7 +5,8 @@ const albumsController = {};
 albumsController.getTopAlbums = async (req, res, next) => {
 
   try {
-    const topAlbums = await models.getTopAlbums();
+    const userId = res.locals.userId;
+    const topAlbums = await models.getTopAlbums(userId);
     res.locals.topAlbums = topAlbums;
     return next();
 

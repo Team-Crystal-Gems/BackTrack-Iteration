@@ -8,7 +8,7 @@ function mapNameAndAddDashes(array) {
   const newArray = [];
   for (let i = 0; i < copy.length; i++) {
     const element = copy[i];
-    if (typeof element === 'object') newArray.push(element.name);
+    if (typeof element === 'object') newArray.push(element.artist_name);
     if (i !== copy.length - 1) newArray.push('-');
   }
   return newArray;
@@ -28,7 +28,6 @@ const TopArtistsComp = () => {
 
   return (
     <div className='artistsWrapper'>
-      {/* <h3>Let's take a trip down memory lane</h3> */}
       <h3>You were jammin' to these artists:</h3>
       <div className='artists'>
         {status === 'succeeded' && mappedArtists.map((element, index) => (
