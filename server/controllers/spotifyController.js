@@ -10,7 +10,7 @@ spotifyController.getTrackImage = async (req, res, next) => {
         const uri = track.uri
         const token = await getSpotifyToken();
         const response = await fetch(
-            `https://api.spotify.com/v1/tracks/${uri}?market=US`,
+            `https://api.spotify.com/v1/tracks/${uri}?market=CA`,
             {
               method: 'GET',
         
@@ -32,7 +32,7 @@ spotifyController.getAlbumImage = async (req, res, next) => {
   const albums = (res.locals.topAlbums) ? res.locals.topAlbums : res.locals.topAlbumsByYear;
   const topAlbum = albums[0];
   const token = await getSpotifyToken();
-  const uri = encodeURI(`search?q=album:${topAlbum.name} artist:${topAlbum.artist_name}&type=album&market=US&limit=1`);
+  const uri = encodeURI(`search?q=album:${topAlbum.name} artist:${topAlbum.artist_name}&type=album&market=CA&limit=1`);
   const response = await fetch(
     `https://api.spotify.com/v1/${uri}`,
     {
