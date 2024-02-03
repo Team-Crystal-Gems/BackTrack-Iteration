@@ -82,30 +82,32 @@ const UploadComp = () => {
   return (
     <>
       <NavComp />
-      <div className="uploadComp-container">
+      <div className="uploadComp-page-container">
+        <div className="uploadComp-container">
 
-        <div className="upload-div">
-          <img src={cassettte} />
-        </div>
-        {/* <NavbarComp /> */}
+          <div className="upload-div">
+            <img src={cassettte} />
+          </div>
+          {/* <NavbarComp /> */}
 
-        <div className="upload-div">
-          <h3>UPLOAD YOUR BEST TRACKS</h3>
-        </div>
+          <div className="upload-div">
+            <h3>UPLOAD YOUR BEST TRACKS</h3>
+          </div>
 
-        <div id="input-div" className="upload-div">
-          <input id="choose-file-input" type="file" multiple onChange={handleFileSelect}></input>
-          <ul>
-            {fileSelect.map((file, i) => (
-              <li key={`${file}-${i}`}>
-                {file.name}
-                <button className="btn-delete" id={file.name} onClick={handleDelete}>X</button>
-              </li>
-            ))}
-          </ul>
+          <div id="input-div" className="upload-div">
+            <input id="choose-file-input" type="file" multiple onChange={handleFileSelect}></input>
+            <ul>
+              {fileSelect.map((file, i) => (
+                <li key={`${file}-${i}`}>
+                  {file.name}
+                  <button className="btn-delete" id={file.name} onClick={handleDelete}>X</button>
+                </li>
+              ))}
+            </ul>
 
-          {/* {uploadButton && <button className="btn" id="upload-button" onClick={handleClick}>Upload</button>} */}
-          {fileSelect[0] && <button className="btn" id="upload-button" onClick={handleClick}>Upload</button>}
+            {/* {uploadButton && <button className="btn" id="upload-button" onClick={handleClick}>Upload</button>} */}
+            {fileSelect[0] && <button className="btn" id="upload-button" onClick={handleClick}>Upload</button>}
+          </div>
         </div>
       </div>
     </>
