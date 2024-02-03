@@ -104,7 +104,7 @@ const UploadComp = () => {
             ))}
           </ul>
 
-          <button id="upload-button" onClick={handleClick}>Upload</button>
+          <button className="btn" id="upload-button" onClick={handleClick}>Upload</button>
         </div>
       </div>
     </>
