@@ -585,7 +585,7 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid white;
+  // border: 1px solid white;
   // width: 330px;
   // flex-basis: 400px;
   margin: 200px;
@@ -598,7 +598,11 @@ ul {
 }
 
 .authenticationComp--container input {
-  margin-bottom: 10px;
+  margin-bottom: 17px;
+  width: 260px;
+  height: 25px;
+  font: inherit;
+  font-size: 12px;
 }
 
 // .authenticationComp--font {
@@ -610,15 +614,31 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 35px 0;
+}
+
+.btn--container p {
+  margin: 5px;
 }
 
 .btn {
+  width: 100%;;
   border-radius: 100px;
-  padding: 15px 30px;
+  padding: 10px;
+  background: $lightBlue;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 1px black;
+  border: none;
+  font-size: 16px;
 }
 
-.google-btn {
-  margin: 0 auto;
+.authenticationComp--container a {
+  border-bottom: 1px solid white;
+}
+
+.authenticationComp--container a:hover {
+  color: $lightBlue;
 }
 
 // UploadComp
