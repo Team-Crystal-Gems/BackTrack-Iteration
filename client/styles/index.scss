@@ -574,22 +574,19 @@ ul {
 
 /* ITERATION STYLES */
 .authenticationPage--container {
-
-  // display: flex;
-  margin-top: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
 }
 
 .authenticationComp--container {
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // border: 1px solid white;
-  // width: 330px;
-  // flex-basis: 400px;
-  margin: 200px;
   font-family: $font-family-poppins;
+  // margin-bottom: 30%;
 }
 
 .authenticationComp--container form {
@@ -603,6 +600,8 @@ ul {
   height: 25px;
   font: inherit;
   font-size: 12px;
+  border-radius: 5px;
+  padding: 5px 10px;
 }
 
 // .authenticationComp--font {
@@ -631,6 +630,10 @@ ul {
   text-shadow: 0 0 1px black;
   border: none;
   font-size: 16px;
+}
+
+.btn:hover {
+  background-color: $skyeBlue;
 }
 
 .authenticationComp--container a {
