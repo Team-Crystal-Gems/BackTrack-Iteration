@@ -114,14 +114,15 @@ const AuthComp = () => {
             value={formData.password}
           />
 
-          <button className="btn">{compProps.submitBtnLabel}</button>
-        </form>
-        <div className="btn--container">
-          <p>or</p>
-          <button className="btn" onClick={() => googleOAuth()}>
-            {compProps.submitBtnLabel} with Google
-          </button>
+          <div className="btn--container">
+            <button className="btn">{compProps.submitBtnLabel}</button>
+            <p>or</p>
+            <button className="btn" onClick={() => googleOAuth()}>
+              {compProps.submitBtnLabel} with Google
+            </button>
         </div>
+        </form>
+
         {authStage === 'signup' && (
           <p>
             Already have an account? <a onClick={handleClick}>Log in here</a>.
@@ -129,7 +130,7 @@ const AuthComp = () => {
         )}
         {authStage === 'login' && (
           <p>
-            Don't have an account?<a onClick={handleClick}> Sign up here</a>.
+            Don't have an account? <a onClick={handleClick}>Sign up here</a>.
           </p>
         )}
       </div>
