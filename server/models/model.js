@@ -51,16 +51,16 @@ const executeQuery = async (queryCallback) => {
 
 // Consolidated models down into object of "models" to be change upon project reqs changing
 const models = {
-  // now querying the Tracks table, rather than a view.
-  // can replicate this with artists and albums.
-  getTopTracks: () =>
+
+  getTopTracks: (userId) => 
     executeQuery(
       () =>
         supabase
-          .from('tracks')
+          .from('top_tracks_by_user')
           .select('*')
+          .eq('user_id', userId)
           .order('playtime_ms', { ascending: false })
-          .limit(10)
+          
       // Keith 2024-01-14_03-26-PM:
       // the below data we used to get from the api is now in the data base so no need to call the api here, for now.
       // still missing audio_clip_url for some songs. we'll need to make different api models to get that.
@@ -74,57 +74,58 @@ const models = {
       //     track.explicit = trackInfo.explicit;
       //   }
       // return tracks;
-    ),
+  ),
 
-  getTopArtists: () =>
+  getTopArtists: (userId) =>
     executeQuery(() =>
       supabase
-        .from('artists')
+        .from('top_artists_by_user')
         .select('*')
+        .eq('user_id', userId)
         .neq('playtime_ms', 0)
         .order('playtime_ms', { ascending: false })
         .limit(10)
     ),
 
-  getTopAlbums: () =>
+  getTopAlbums: (userId) =>
     executeQuery(() =>
       supabase
-        .from('albums')
+        .from('top_albums_by_user')
         .select('*')
+        .eq('user_id', userId)
         .neq('playtime_ms', 0)
         .order('playtime_ms', { ascending: false })
-        .limit(10)
     ),
 
-  getTopArtistsByYear: (year) =>
+  getTopArtistsByYear: (year, userId) =>
     executeQuery(() =>
-      supabase.from('top_artists_by_year').select('*').eq('year', year)
+      supabase.from('top_artists_by_user_and_year').select('*').eq('year', year).eq('user_id', userId)
     ),
 
-  getTopAlbumsByYear: (year) =>
+  // getTopAlbumsByYear: (year) =>
+  //   executeQuery(() =>
+  //     supabase.from('top_albums_by_year').select('*').eq('year', year)
+  //   ),
+
+  getTopTracksByYear: (year, userId) =>
     executeQuery(() =>
-      supabase.from('top_albums_by_year').select('*').eq('year', year)
+      supabase.from('top_tracks_by_user_and_year').select('*').eq('year', year).eq('user_id', userId)
     ),
 
-  getTopTracksByYear: (year) =>
+  // getTopArtistsByYearByMonth: (year) =>
+  //   executeQuery(() =>
+  //     supabase.from('top_artists_by_year_month').select('*').eq('year', year)
+  //   ),
+
+  getTopAlbumsByYearByMonth: (year, userId) =>
     executeQuery(() =>
-      supabase.from('top_tracks_by_year').select('*').eq('year', year)
+      supabase.from('top_albums_by_user_year_month').select('*').eq('year', year).eq('user_id', userId)
     ),
 
-  getTopArtistsByYearByMonth: (year) =>
-    executeQuery(() =>
-      supabase.from('top_artists_by_year_month').select('*').eq('year', year)
-    ),
-
-  getTopAlbumsByYearByMonth: (year) =>
-    executeQuery(() =>
-      supabase.from('top_albums_by_year_month').select('*').eq('year', year)
-    ),
-
-  getTopTracksByYearByMonth: (year) =>
-    executeQuery(() =>
-      supabase.from('top_tracks_by_year_month').select('*').eq('year', year)
-    ),
+  // getTopTracksByYearByMonth: (year) =>
+  //   executeQuery(() =>
+  //     supabase.from('top_tracks_by_year_month').select('*').eq('year', year)
+  //   ),
 
   getAlbumImageUrl: (albumNameArray) =>
     executeQuery(() =>

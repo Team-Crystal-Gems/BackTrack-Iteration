@@ -11,30 +11,18 @@ const SliderComp = () => {
 
   const { year, track: chosenTrack, status, error } = useSelector(state => state.chosen);
 
-  const [userId, setUserId] = useState(
-    {
-      user_id: '',
-      user_name: ''
-    }
-  );
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     fetch('/users/data')
       .then(response => response.json())
-      .then(jsonData => setUserId(prev => {
-        return {
-          ...prev,
-          user_id: jsonData.user_id,
-          user_name: jsonData.user_name
-        }
-      }))
+      .then(jsonData => setUserName(jsonData.user_name[0].toUpperCase() + jsonData.user_name.slice(1).toLowerCase()))
       .catch(err => console.log('SliderComp.jsx: fetch /users/data: Error: ', err));
   }, []);
 
   const fetchData = () => {
     // the below .then on the dispatch then matching the fulfilled of dispatch to action allows us to wait for the fetchTopTracks to complete before dispatching the chosenTrack.
     // trying to set the chosen track when the page first loads was resulting in an error, as TopTracks hadn't yet returned its promise.
-
     dispatch(fetchTopTracks(year)).then((action) => {
       if (fetchTopTracks.fulfilled.match(action) & !chosenTrack.name) {
         dispatch(setChosenTrack(action.payload[0]))
@@ -61,7 +49,7 @@ const SliderComp = () => {
     if (status === 'idle') {
       fetchData()
     }
-  }, [dispatch, status]);
+  }, [dispatch, status, userName]);
 
   function handleSliderInput(e) {
     dispatch(setYear(e.target.value));
@@ -102,7 +90,7 @@ const SliderComp = () => {
 
   return (
     <div id="landingAndSticky">
-      <h1 className="landing hide">Keith,</h1>
+      <h1 className="landing hide">{userName},</h1>
       <h1 className="landing hide">In your Spotify</h1>
       <h1 className="landing hide">Adventure,</h1>
       <h1 className="landing hide">Discover...</h1>

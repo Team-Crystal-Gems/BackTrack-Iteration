@@ -55,7 +55,7 @@ const GraphComp = () => {
           justifyContent: 'flex-start', 
           alignItems: 'flex-start',
           }}>
-          <img src={payload[0].payload.album} alt="" />
+          <img src={payload[0].payload.album} alt="" style={{ maxWidth: '100%' }}/>
           <p style={{padding: '0px',  margin: '20px 0px'}} className="label">{payload[0].payload.name}</p>
           <p style={{ padding: '0px', margin: '5px 0px' }} className="label">{payload[0].payload.artist_name}</p>
           <p style={{ padding: '0px', margin: '0px' }} className="label">Minutes listened:</p>
