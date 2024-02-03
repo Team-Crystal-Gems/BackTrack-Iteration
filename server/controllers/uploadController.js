@@ -26,7 +26,8 @@ uploadController.processFiles = async (req, res, next) => {
                     user_id: res.locals.userId
                 }))
                 while (filteredData.length > 0) {
-                    await models.uploadData(filteredData.splice(0, 100))
+                    const dataChunk = filteredData.splice(0,25)
+                    await models.uploadData(dataChunk)
                 }
                 // need user_id as well so that sessions are unique to users
             }

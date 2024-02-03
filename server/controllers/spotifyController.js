@@ -10,7 +10,7 @@ spotifyController.getTrackImage = async (req, res, next) => {
         const uri = track.uri
         const token = await getSpotifyToken();
         const response = await fetch(
-            `https://api.spotify.com/v1/tracks/${uri}?market=US`,
+            `https://api.spotify.com/v1/tracks/${uri}?market=CA`,
             {
               method: 'GET',
         
