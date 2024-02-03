@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toggleAuthStage } from '../features/authSlice.js';
 import { useGoogleLogin } from '@react-oauth/google';
+import NavbarComp from './NavbarComp.jsx';
 
 const AuthComp = () => {
   const authStage = useSelector((state) => state.auth.authStage);
@@ -75,9 +76,11 @@ const AuthComp = () => {
   });
 
   return (
+    <>
+    <NavbarComp/>
     <div className="authenticationPage--container">
       <div className="authenticationComp--container">
-        <h1>{compProps.header}</h1>
+        <h1 className="authenticationComp--font">{compProps.header}</h1>
         <form onSubmit={handleSubmit}>
           {compProps.nameLabel && <label htmlFor="input--name">Name</label>}
           {compProps.nameLabel && (
@@ -131,6 +134,7 @@ const AuthComp = () => {
         )}
       </div>
     </div>
+</>
   );
 };
 

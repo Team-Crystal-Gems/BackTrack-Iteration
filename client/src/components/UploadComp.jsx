@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavComp from "./NavComp.jsx";
+import NavbarComp from "./NavbarComp.jsx";
+import cassettte from "../../assets/cassette.png"
 
 const UploadComp = () => {
 
@@ -80,16 +82,31 @@ const UploadComp = () => {
   return (
     <>
       <NavComp />
-      <input type="file" multiple onChange={handleFileSelect}></input>
-      <button onClick={handleClick}>Upload</button>
-      <ul>
-        {fileSelect.map((file, i) => (
-          <li key={`${file}-${i}`}>
-            {file.name}
-            <button id={file.name} onClick={handleDelete}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <div className="uploadComp-container">
+
+        <div className="upload-div">
+          <img src={cassettte} />
+        </div>
+        {/* <NavbarComp /> */}
+
+        <div className="upload-div">
+          <h3>UPLOAD YOUR BEST TRACKS</h3>
+        </div>
+
+        <div id="input-div" className="upload-div">
+          <input type="file" multiple onChange={handleFileSelect}></input>
+          <ul>
+            {fileSelect.map((file, i) => (
+              <li key={`${file}-${i}`}>
+                {file.name}
+                <button id={file.name} onClick={handleDelete}>X</button>
+              </li>
+            ))}
+          </ul>
+
+          <button onClick={handleClick}>Upload</button>
+        </div>
+      </div>
     </>
   )
 };
