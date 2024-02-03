@@ -574,22 +574,19 @@ ul {
 
 /* ITERATION STYLES */
 .authenticationPage--container {
-
-  // display: flex;
-  margin-top: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
 }
 
 .authenticationComp--container {
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid white;
-  // width: 330px;
-  // flex-basis: 400px;
-  margin: 200px;
   font-family: $font-family-poppins;
+  // margin-bottom: 30%;
 }
 
 .authenticationComp--container form {
@@ -598,7 +595,13 @@ ul {
 }
 
 .authenticationComp--container input {
-  margin-bottom: 10px;
+  margin-bottom: 17px;
+  width: 260px;
+  height: 25px;
+  font: inherit;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 5px 10px;
 }
 
 // .authenticationComp--font {
@@ -610,15 +613,35 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 35px 0;
+}
+
+.btn--container p {
+  margin: 5px;
 }
 
 .btn {
+  width: 100%;;
   border-radius: 100px;
-  padding: 15px 30px;
+  padding: 10px;
+  background: $lightBlue;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 1px black;
+  border: none;
+  font-size: 16px;
 }
 
-.google-btn {
-  margin: 0 auto;
+.btn:hover {
+  background-color: $skyeBlue;
+}
+
+.authenticationComp--container a {
+  border-bottom: 1px solid white;
+}
+
+.authenticationComp--container a:hover {
+  color: $lightBlue;
 }
 
 // UploadComp
@@ -691,6 +714,13 @@ ul {
   }
 }
 
+.uploadComp-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
+
 .uploadComp-container {
   display: flex;
   flex-direction: column;
@@ -710,11 +740,23 @@ ul {
 
   #input-div {
     padding: 2em 4em;
-    border: solid 1px white;
+    // border: solid 1px white;
 
-    button {
-      display: flex;
-      flex-direction: row;
+    // button {
+    //   display: flex;
+    //   flex-direction: row;
+    // }
+    
+    input::file-selector-button {
+      width: 100%;
+      border-radius: 100px;
+      padding: 10px;
+      background: $lightBlue;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 1px black;
+      border: none;
+      font-size: 16px;
     }
 
     li {
@@ -722,6 +764,24 @@ ul {
       justify-content: space-between;
       align-items: center;
       font-size: 1.5em;
+      // border: solid 1px white;
+      margin: .2em;
+      padding: 0 1em;
+
+      font-family: $font-family-poppins;
+    }
+
+    .btn-delete {
+      width: 3em;
+      // width: 100%;;
+      border-radius: 100px;
+      padding: 10px;
+      background: $lightBlue;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 1px black;
+      border: none;
+      font-size: 16px;
     }
   }
 
@@ -730,9 +790,7 @@ ul {
     height: 25%;
   }
 
-  button {
-    margin: 2em;
-    font-family: $font-family-mono;
-    padding: .5em 1em;
+  #upload-button {
+    width: 16em;
   }
 }
