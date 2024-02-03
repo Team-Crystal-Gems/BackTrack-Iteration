@@ -99,12 +99,13 @@ const UploadComp = () => {
             {fileSelect.map((file, i) => (
               <li key={`${file}-${i}`}>
                 {file.name}
-                <button className="li-delete-button" id={file.name} onClick={handleDelete}>X</button>
+                <button className="btn-delete" id={file.name} onClick={handleDelete}>X</button>
               </li>
             ))}
           </ul>
 
-          <button className="btn" id="upload-button" onClick={handleClick}>Upload</button>
+          {/* {uploadButton && <button className="btn" id="upload-button" onClick={handleClick}>Upload</button>} */}
+          {fileSelect[0] && <button className="btn" id="upload-button" onClick={handleClick}>Upload</button>}
         </div>
       </div>
     </>

@@ -740,9 +740,16 @@ ul {
     //   flex-direction: row;
     // }
     
-    input {
-      // font-family: $font-family-poppins;
-      padding: 2em;
+    input::file-selector-button {
+      width: 100%;
+      border-radius: 100px;
+      padding: 10px;
+      background: $lightBlue;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 1px black;
+      border: none;
+      font-size: 16px;
     }
 
     li {
@@ -750,9 +757,24 @@ ul {
       justify-content: space-between;
       align-items: center;
       font-size: 1.5em;
-      border: solid 1px white;
+      // border: solid 1px white;
       margin: .2em;
       padding: 0 1em;
+
+      font-family: $font-family-poppins;
+    }
+
+    .btn-delete {
+      width: 3em;
+      // width: 100%;;
+      border-radius: 100px;
+      padding: 10px;
+      background: $lightBlue;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 1px black;
+      border: none;
+      font-size: 16px;
     }
   }
 
@@ -762,6 +784,6 @@ ul {
   }
 
   #upload-button {
-    width: 15em;
+    width: 16em;
   }
 }
