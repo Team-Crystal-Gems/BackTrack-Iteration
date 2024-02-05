@@ -1,29 +1,30 @@
 // importing of fonts
 // @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-
 
 // Added Rubik as header font for our app
 
-$purple: #B200FF;
-$blue: #0085FF;
-$green: #0BEC21;
+$purple: #b200ff;
+$blue: #0085ff;
+$green: #0bec21;
 $white: #efefef;
 $darkBlue: #130188;
 $darkBlue2: #13008b;
-$lightBlue: #ADADFF;
-$skyeBlue: #6072D1;
+$lightBlue: #adadff;
+$skyeBlue: #6072d1;
 
-$font-family-mono: "Red Hat Mono", monospace;
-$font-family-roboto-mono: "Roboto Mono", monospace;
-$font-family-header: "Rubik", sans-serif;
+$font-family-mono: 'Red Hat Mono', monospace;
+$font-family-roboto-mono: 'Roboto Mono', monospace;
+$font-family-header: 'Rubik', sans-serif;
+
+// Daniel
+$font-family-poppins: 'Poppins', monospace;
 //gradient for headers / slider etc:
 $gradient-text: -webkit-linear-gradient(60deg, $purple, $blue, $green);
 // border radius used for list elements, slider etc:
 $border-radius: 69px;
 // gradient animation style for landing page
-
 
 html {
   width: 100%;
@@ -38,7 +39,6 @@ html {
     height: 100%;
   }
 }
-
 
 body {
   // background: linear-gradient(45deg, $darkBlue 0%, darken($darkBlue2, 50%) 100%);
@@ -55,8 +55,6 @@ body {
   // added background-attachment to make sure background doesn't repeat itself
   background-attachment: fixed;
 }
-
-
 
 @keyframes background {
   0% {
@@ -88,7 +86,6 @@ ul {
   width: 400px;
 }
 
-
 #landingAndSticky {
   margin-top: 200px;
   position: sticky;
@@ -102,11 +99,13 @@ ul {
   z-index: 10;
   // margin-bottom: 100px;
   height: 100vh;
+
   h1 {
     font-size: 84px;
     margin: 0px 20px;
     font-family: $font-family-header;
   }
+
   margin-bottom: 50px;
 }
 
@@ -114,6 +113,7 @@ ul {
   display: flex;
   align-items: center;
   margin-bottom: 50px;
+
   h1 {
     margin: 0px 20px;
   }
@@ -127,6 +127,7 @@ ul {
     text-align: start;
     text-transform: uppercase;
   }
+
   margin: auto;
   // width: 1300px;
 
@@ -230,6 +231,7 @@ ul {
   justify-content: 'flex-start';
   align-items: 'center';
 }
+
 // .recharts-axis-label {
 //   fill: $blue; // Color
 //   font-family: 'Rubik', sans-serif; // Font family
@@ -242,33 +244,54 @@ ul {
   justify-content: center;
 
   img {
-    margin: 25px;
+    margin: 25px 25px 0px;
     height: 50px;
   }
 
-  + h3 {
+  +h3 {
     @media (max-width: 950px) {
       font-size: 30px;
     }
   }
 }
 
+.navBar p {
+  font-family: $font-family-poppins;
+  margin: 5px 0px;
+}
+
+
+
+// #play-icon {
+//   // width: 50%;
+//   // height: auto;
+//   max-width: 100%;
+//   max-height: 100%;
+//   // width: 25px
+// }
+
+// Daniel - may not use this
+// .navBar--caption {
+//   display: flex;
+// }
+
 .gradientHeader {
   background: $gradient-text;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-family: $font-family-mono;
   font-size: 64px;
   text-align: center;
-    @media (max-width: 1215px) {
-      font-size: 50px;
-    }
-    @media (max-width: 950px) {
-      font-size: 40px;
-    }
-}
 
+  @media (max-width: 1215px) {
+    font-size: 50px;
+  }
+
+  @media (max-width: 950px) {
+    font-size: 40px;
+  }
+}
 
 .TopTracksAndImageContainer {
   display: flex;
@@ -276,6 +299,7 @@ ul {
   gap: calc(15%);
   align-items: center;
   margin-bottom: 100px;
+
   // min-width: 1300px;
   @media (max-width: 1055px) {
     flex-direction: column;
@@ -287,16 +311,16 @@ ul {
   color: $white;
   font-family: $font-family-mono;
   width: 422px;
+
   h3 {
     margin: 0px;
     text-align: left;
+
     @media (max-width: 1055px) {
       text-align: center;
     }
   }
 }
-
-
 
 .TopTracksContainer li {
   border: 0.3px solid rgba(255, 255, 255, 0.7);
@@ -310,6 +334,7 @@ ul {
   overflow: hidden;
   // position: relative;
   cursor: pointer;
+
   img {
     height: 15px;
     width: 15px;
@@ -328,6 +353,7 @@ ul {
   overflow: hidden;
   display: block;
   width: 200%;
+
   div {
     display: inline-block;
     width: 50%;
@@ -335,15 +361,22 @@ ul {
 }
 
 @keyframes marquee {
-  0% { left: 0; }
-  100% { left: -100%; }
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: -100%;
+  }
 }
+
 .onPlay {
   position: absolute;
   overflow: hidden;
   display: block;
   width: 200%;
   animation: marquee 8s linear infinite;
+
   div {
     display: inline-block;
     width: 50%;
@@ -355,6 +388,7 @@ ul {
     margin: 0;
     text-align: end;
     margin-bottom: 15px;
+
     @media (max-width: 1055px) {
       text-align: center;
     }
@@ -369,12 +403,14 @@ ul {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-    img {
-        padding-top: 25px;
-        height: 400px;
-        width: 425px;
-        object-fit: cover;
-      }
+
+  img {
+    padding-top: 25px;
+    height: 400px;
+    width: 425px;
+    object-fit: cover;
+  }
+
   h4 {
     font-weight: 300;
     text-align: end;
@@ -388,6 +424,7 @@ ul {
     text-align: end;
     word-wrap: break-word;
     margin-bottom: 15px;
+
     @media (max-width: 1055px) {
       text-align: center;
     }
@@ -395,20 +432,24 @@ ul {
 }
 
 .albumCard {
-background: rgb(0, 133, 255);
-  background: linear-gradient(16deg, rgba(238, 0, 255, 0.2) 0%,  rgba(0, 133, 255, 1) 100%);
+  background: rgb(0, 133, 255);
+  background: linear-gradient(16deg,
+      rgba(238, 0, 255, 0.2) 0%,
+      rgba(0, 133, 255, 1) 100%);
   width: 500px;
   height: 515px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-    img {
-        padding-top: 25px;
-        height: 400px;
-        width: 425px;
-        object-fit: cover;
-      }
+
+  img {
+    padding-top: 25px;
+    height: 400px;
+    width: 425px;
+    object-fit: cover;
+  }
+
   h4 {
     font-weight: 300;
     text-align: end;
@@ -419,8 +460,6 @@ background: rgb(0, 133, 255);
 // styling for the graph wrapper
 // styling for the graph wrapper
 
-
-
 .artistsWrapper {
   width: 100%;
   display: flex;
@@ -428,6 +467,7 @@ background: rgb(0, 133, 255);
   // height: 50vh;
   justify-content: center;
   align-items: center;
+
   h3 {
     font-family: $font-family-header;
     font-weight: 800;
@@ -468,6 +508,7 @@ background: rgb(0, 133, 255);
   // height: 60vh;
   // justify-content: center;
   align-items: center;
+
   h3 {
     // width: 1010px;
     // height: 76px;
@@ -484,29 +525,28 @@ background: rgb(0, 133, 255);
     background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-top: 3em;
-
   }
 }
 
 // .albumContainer img {
-    // width: 980px;
-    // height: 988px;
-    // position: absolute;
-    // top: 3164px;
-    // left: 374px;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
-    // position: absolute;
-    // top: 3164px;
-    // left: 374px;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
-    // width: 800px;
-    // height: 800px;
+// width: 980px;
+// height: 988px;
+// position: absolute;
+// top: 3164px;
+// left: 374px;
+// display: flex;
+// flex-direction: column;
+// justify-content: center;
+// align-items: center;
+// position: absolute;
+// top: 3164px;
+// left: 374px;
+// display: flex;
+// flex-direction: column;
+// justify-content: center;
+// align-items: center;
+// width: 800px;
+// height: 800px;
 // }
 
 .albumContainer {
@@ -517,12 +557,14 @@ background: rgb(0, 133, 255);
   justify-content: center;
   flex-direction: column;
   align-items: center;
-    img {
-        padding-top: 25px;
-        height: 640px;
-        width: 660px;
-        object-fit: cover;
-      }
+
+  img {
+    padding-top: 25px;
+    height: 640px;
+    width: 660px;
+    object-fit: cover;
+  }
+
   h4 {
     font-weight: 300;
     text-align: end;
@@ -530,3 +572,225 @@ background: rgb(0, 133, 255);
   }
 }
 
+/* ITERATION STYLES */
+.authenticationPage--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
+
+.authenticationComp--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: $font-family-poppins;
+  // margin-bottom: 30%;
+}
+
+.authenticationComp--container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.authenticationComp--container input {
+  margin-bottom: 17px;
+  width: 260px;
+  height: 25px;
+  font: inherit;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+// .authenticationComp--font {
+//   font-family: $font-family-poppins;
+// }
+
+.btn--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 35px 0;
+}
+
+.btn--container p {
+  margin: 5px;
+}
+
+.btn {
+  width: 100%;;
+  border-radius: 100px;
+  padding: 10px;
+  background: $lightBlue;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 1px black;
+  border: none;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: $skyeBlue;
+}
+
+.authenticationComp--container a {
+  border-bottom: 1px solid white;
+}
+
+.authenticationComp--container a:hover {
+  color: $lightBlue;
+}
+
+// UploadComp
+
+
+
+// ul {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+// }
+
+
+
+
+
+
+
+
+.nav {
+  display: grid;
+  grid-template-columns: [left] 1fr [center] 2fr [right] 1fr;
+  font-size: .7em;
+
+
+  .center-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+
+    // border: solid 1px white;
+    // flex: 1;
+    img {
+      width: 60%;
+      height: auto;
+      max-height: 120px;
+      max-width: auto;
+    }
+  }
+
+  .right-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    align-self: center;
+    // margin-left: auto;
+    // border: solid 1px white;
+    padding: .5em;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: .5em;
+      width: 5em;
+    }
+
+    img {
+      width: 2em;
+      height: 2em;
+    }
+
+    p {
+      margin: .5em 0em 0em;
+    }
+
+  }
+}
+
+.uploadComp-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
+
+.uploadComp-container {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  border: .6em solid white;
+  padding: 10%;
+  padding: 5em;
+  margin: 10% 15%;
+
+  // font-family: $font-family-mono;
+  .upload-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #input-div {
+    padding: 2em 4em;
+    // border: solid 1px white;
+
+    // button {
+    //   display: flex;
+    //   flex-direction: row;
+    // }
+    
+    input::file-selector-button {
+      width: 100%;
+      border-radius: 100px;
+      padding: 10px;
+      background: $lightBlue;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 1px black;
+      border: none;
+      font-size: 16px;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.5em;
+      // border: solid 1px white;
+      margin: .2em;
+      padding: 0 1em;
+
+      font-family: $font-family-poppins;
+    }
+
+    .btn-delete {
+      width: 3em;
+      // width: 100%;;
+      border-radius: 100px;
+      padding: 10px;
+      background: $lightBlue;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 1px black;
+      border: none;
+      font-size: 16px;
+    }
+  }
+
+  img {
+    width: 25%;
+    height: 25%;
+  }
+
+  #upload-button {
+    width: 16em;
+  }
+}

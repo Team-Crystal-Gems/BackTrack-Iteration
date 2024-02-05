@@ -8,7 +8,13 @@ import cors from 'cors';
 import tracksRouter from './routes/tracksRouter.js';
 import artistsRouter from './routes/artistsRouter.js';
 import albumsRouter from './routes/albumsRouter.js';
+import usersRouter from './routes/usersRouter.js';
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+import cookieParser from 'cookie-parser';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Load environment variables from .env.server.
 dotenv.config({ path: '.env.server' });
@@ -22,6 +28,7 @@ const app = express();
 // Using epxress.json and epxress .urlencoded middleware to parse incoming JSON and URL-encoded requesr bodies.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Cors is enabled for all origins allowing any origin to access the server's resources.
 const corsOptions = {
@@ -35,6 +42,26 @@ app.use(cors(corsOptions));
 app.use('/tracks', tracksRouter);
 app.use('/artists', artistsRouter);
 app.use('/albums', albumsRouter);
+app.use('/users', usersRouter);
+
+// Client routing
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+})
+app.get('/upload', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+})
+
+app.use((err, req, res, next) => {
+    const defaultErr = {
+      log: 'Error handler caught unknown middleware error',
+      status: 500,
+      message: {err:`An error occurred ${err}`},
+    };
+    const errorObj = Object.assign({}, defaultErr, err);
+    console.log(errorObj.log);
+    return res.status(errorObj.status).json(errorObj.message)
+});
 
 app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}...`);

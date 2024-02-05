@@ -4,9 +4,9 @@ const tracksController = {};
 
 tracksController.getTopTracks = async (req, res, next) => {
   try {
-    const data = await models.getTopTracks();
+    const userId = res.locals.userId;
+    const data = await models.getTopTracks(userId);
     res.locals.topTracks = data;
-    // console.log('topTracks in tracksController', topTracks);
     return next();
 
   } catch (error) {
@@ -19,10 +19,10 @@ tracksController.getTopTracks = async (req, res, next) => {
 //whole codebase, so I created a custom controller just to get this working first.
 tracksController.getTopTracksByYear = async (req, res, next) => {
   const { year } = req.query;
+  const userId = res.locals.userId;
   try {
-    const data = await models.getTopTracksByYear(year);
+    const data = await models.getTopTracksByYear(year, userId);
     res.locals.topTracksByYear = data;
-    // console.log('topTracksByYear.length in tracksController', data.length);
     return next();
 
   } catch (error) {

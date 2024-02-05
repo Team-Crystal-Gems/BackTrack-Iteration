@@ -5,7 +5,8 @@ const albumsController = {};
 albumsController.getTopAlbums = async (req, res, next) => {
 
   try {
-    const topAlbums = await models.getTopAlbums();
+    const userId = res.locals.userId;
+    const topAlbums = await models.getTopAlbums(userId);
     res.locals.topAlbums = topAlbums;
     return next();
 
@@ -17,12 +18,13 @@ albumsController.getTopAlbums = async (req, res, next) => {
 albumsController.getTopAlbumsByYear = async (req, res, next) => {
   const { year } = req.query;
   try {
+    const userId = res.locals.userId;
     //we don't have a 'top_albums_by_year' only view, so calling 'top_albums_by_year_month'. when we add a query for 'top_albums_by_year', change
     //this query to use that
-    const topAlbumsByYear = await models.getTopAlbumsByYearByMonth(year);
+    const topAlbumsByYear = await models.getTopAlbumsByYearByMonth(year, userId);
     //we don't need 12 copies of the album data per year, so reduce
-    let reducedTopAlbumsByYear = topAlbumsByYear.reduce((acc, { year, rank, album_name, yearly_playtime_minutes, yearly_playtime_ms, yearly_playtime_hours, album_id }) => {
-      const json = JSON.stringify({ year, rank, album_name, yearly_playtime_minutes, yearly_playtime_ms, yearly_playtime_hours, album_id});
+    let reducedTopAlbumsByYear = topAlbumsByYear.reduce((acc, { year, rank, name, artist_name, yearly_playtime_minutes, yearly_playtime_ms, yearly_playtime_hours, album_id }) => {
+      const json = JSON.stringify({ year, rank, name, artist_name, yearly_playtime_minutes, yearly_playtime_ms, yearly_playtime_hours, album_id});
       if (!acc.includes(json)) return [...acc, json];
       return acc;
     }, []);

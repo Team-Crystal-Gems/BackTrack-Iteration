@@ -35,7 +35,7 @@ const chosenSlice = createSlice({
 
 const dataSlice = (endpoint, filter) => {
 
-  const actions = createAsyncThunk(
+  const actions = createAsyncThunk( //ByYear?year=
 
     `fetch/${endpoint}`,
     async (year) => {

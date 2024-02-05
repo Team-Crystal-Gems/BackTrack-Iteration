@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { topTracksReducer, topAlbumsReducer, topArtistsReducer, chosenReducer } from '../features/slice.js';
+import authReducer from "../features/authSlice.js";
 
 const store = configureStore({
   reducer: {
     topTracks: topTracksReducer.reducer,
     topAlbums: topAlbumsReducer.reducer,
     topArtists: topArtistsReducer.reducer,
-    chosen: chosenReducer
+    chosen: chosenReducer,
+    auth: authReducer
   },
   // devTools: process.env.NODE_ENV !== 'production',
 });
